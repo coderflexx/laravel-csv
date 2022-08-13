@@ -1,0 +1,70 @@
+{
+    "name": "coderflex/laravel-csv",
+    "description": "A Laravel livewire CSV Importer, to handle importing millions of rows without a hustle.",
+    "keywords": [
+        "Coderflex",
+        "laravel",
+        "laravel-csv",
+        "Livewire"
+    ],
+    "homepage": "https://github.com/coderflex/laravel-csv",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ousid",
+            "email": "oussama@coderflex.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "illuminate/contracts": "^9.0",
+        "livewire/livewire": "^2.10",
+        "spatie/laravel-package-tools": "^1.9.2"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.0",
+        "nunomaduro/collision": "^6.0",
+        "nunomaduro/larastan": "^2.0.1",
+        "orchestra/testbench": "^7.0",
+        "pestphp/pest": "^1.21",
+        "pestphp/pest-plugin-laravel": "^1.1",
+        "pestphp/pest-plugin-livewire": "^1.0",
+        "phpstan/extension-installer": "^1.1",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.0",
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Coderflex\\LaravelCsv\\": "src",
+            "Coderflex\\LaravelCsv\\Database\\Factories\\": "database/factories"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Coderflex\\LaravelCsv\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Coderflex\\LaravelCsv\\LaravelCsvServiceProvider"
+            ],
+            "aliases": {
+                "LaravelCsv": "Coderflex\\LaravelCsv\\Facades\\LaravelCsv"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
