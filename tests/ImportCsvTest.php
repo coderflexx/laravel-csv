@@ -58,6 +58,13 @@ it('transfers columnsToMap into an associative array', function () {
 });
 
 it('maps requiredColumns property into columnsToMap required state', function () {
+
+    $columnsToMap = [
+        'name',
+        'email',
+        'phone',
+    ];
+
     $requiredColumns = [
         'name',
         'email',
@@ -69,6 +76,7 @@ it('maps requiredColumns property into columnsToMap required state', function ()
     livewire(ImportCsv::class, [
         'model' => $model,
         'file' => $file,
+        'columnsToMap' => $columnsToMap,
         'requiredColumns' => $requiredColumns,
     ])
     ->assertSet('model', $model)
@@ -80,7 +88,7 @@ it('maps requiredColumns property into columnsToMap required state', function ()
     ]);
 });
 
-it('maps through columnsLabels to validate attributes', function () {
+it('maps through columnsLabels for validate attributes', function () {
     $columnsToMap = [
         'name', 'email', 'phone',
     ];

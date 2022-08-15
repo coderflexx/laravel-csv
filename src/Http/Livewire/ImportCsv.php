@@ -2,12 +2,15 @@
 
 namespace Coderflex\LaravelCsv\Http\Livewire;
 
+use Coderflex\LaravelCsv\Concerns\InteractsWithColumns;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Termwind\Components\Dd;
 
 class ImportCsv extends Component
 {
     use WithFileUploads;
+    use InteractsWithColumns;
 
     /** @var string  $model*/
     public string $model;
@@ -26,23 +29,11 @@ class ImportCsv extends Component
 
     public function mount()
     {
-        $this->columnsToMap = collect($this->columnsToMap)
-                ->mapWithKeys(fn ($column): array => [$column => ''])
-                ->toArray();
+        $this->columnsToMap = $this->mapThroughColumns();
 
-        if ($this->columnLabels) {
-            $this->columnLabels = collect($this->requiredColumns)
-                ->mapWithKeys(function ($column): array {
-                    return [
-                        'columnsToMap.' . $column => strtolower($this->columnLabels[$column]),
-                    ];
-                })->toArray();
-        }
+        $this->columnLabels = $this->mapThroughColumnLabels();
 
-        $this->requiredColumns = collect($this->requiredColumns)
-            ->mapWithKeys(function ($column): array {
-                return ['columnsToMap.' . $column => 'required'];
-            })->toArray();
+        $this->requiredColumns = $this->mapThroughRequiredColumns();
     }
 
     public function render()
@@ -50,15 +41,15 @@ class ImportCsv extends Component
         return view('laravel-csv::livewire.import-csv');
     }
 
+    protected function validationAttributes()
+    {
+        return $this->columnLabels;
+    }
+
     protected function rules()
     {
         return [
             'file' => 'required|file|mimes:csv,txt',
         ] + $this->requiredColumns;
-    }
-
-    protected function validationAttributes()
-    {
-        return $this->columnLabels;
     }
 }
