@@ -9,19 +9,19 @@ class ImportCsv extends Component
 {
     use WithFileUploads;
 
-    /** @var string  $model*/
+    /** @var string */
     public string $model;
 
-    /** @var string  $file*/
+    /** @var string */
     public string $file;
 
-    /** @var array $columnsToMap */
+    /** @var array */
     public array $columnsToMap = [];
 
-    /** @var array $requiredColumns */
+    /** @var array */
     public array $requiredColumns = [];
 
-    /** @var array $columnLabels */
+    /** @var array */
     public array $columnLabels = [];
 
     public function mount()
@@ -34,14 +34,14 @@ class ImportCsv extends Component
             $this->columnLabels = collect($this->requiredColumns)
                 ->mapWithKeys(function ($column): array {
                     return [
-                        'columnsToMap.' . $column => strtolower($this->columnLabels[$column]),
+                        'columnsToMap.'.$column => strtolower($this->columnLabels[$column]),
                     ];
                 })->toArray();
         }
 
         $this->requiredColumns = collect($this->requiredColumns)
             ->mapWithKeys(function ($column): array {
-                return ['columnsToMap.' . $column => 'required'];
+                return ['columnsToMap.'.$column => 'required'];
             })->toArray();
     }
 
