@@ -58,7 +58,6 @@ it('transfers columnsToMap into an associative array', function () {
 });
 
 it('maps requiredColumns property into columnsToMap required state', function () {
-
     $columnsToMap = [
         'name',
         'email',

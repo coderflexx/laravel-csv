@@ -4,14 +4,15 @@ namespace Coderflex\LaravelCsv\Concerns;
 
 trait InteractsWithColumns
 {
-    /** 
+    /**
      * Converts the columnsToMap property into an associative array.
-     * @param array $columnsToMap
+     *
+     * @param  array  $columnsToMap
      * @return array
      */
     protected function mapThroughColumns(): array
     {
-        if (!$this->columnsToMap) {
+        if (! $this->columnsToMap) {
             return [];
         }
 
@@ -22,18 +23,19 @@ trait InteractsWithColumns
 
     /**
      * Maps requiredColumns property into columnsToMap required state.
-     * @param array $requiredColumns
+     *
+     * @param  array  $requiredColumns
      * @return array
      */
     protected function mapThroughRequiredColumns(): array
     {
-        if (!$this->requiredColumns) {
+        if (! $this->requiredColumns) {
             return [];
         }
 
         $this->requiredColumns = collect($this->requiredColumns)
             ->mapWithKeys(function ($column): array {
-                return ['columnsToMap.' . $column => 'required'];
+                return ['columnsToMap.'.$column => 'required'];
             })->toArray();
 
         return $this->requiredColumns;
@@ -41,20 +43,20 @@ trait InteractsWithColumns
 
     /**
      * Maps columnLabels property into columnsToMap label state.
-     * @param array $columnLabels
+     *
+     * @param  array  $columnLabels
      * @return array
      */
     protected function mapThroughColumnLabels(): array
     {
-
-        if (!$this->columnLabels) {
+        if (! $this->columnLabels) {
             return [];
         }
 
         return collect($this->requiredColumns)
                 ->mapWithKeys(function ($column): array {
                     return [
-                        'columnsToMap.' . $column => strtolower($this->columnLabels[$column]),
+                        'columnsToMap.'.$column => strtolower($this->columnLabels[$column]),
                     ];
                 })->toArray();
     }

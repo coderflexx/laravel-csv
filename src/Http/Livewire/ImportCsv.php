@@ -5,7 +5,6 @@ namespace Coderflex\LaravelCsv\Http\Livewire;
 use Coderflex\LaravelCsv\Concerns\InteractsWithColumns;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Termwind\Components\Dd;
 
 class ImportCsv extends Component
 {
@@ -30,7 +29,7 @@ class ImportCsv extends Component
     public function mount()
     {
         $this->columnsToMap = $this->mapThroughColumns();
-        
+
         $this->columnLabels = $this->mapThroughColumnLabels();
 
         $this->requiredColumns = $this->mapThroughRequiredColumns();
