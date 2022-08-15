@@ -12,25 +12,25 @@ class ImportCsv extends Component
     use WithFileUploads;
     use InteractsWithColumns;
 
-    /** @var string  $model*/
+    /** @var string */
     public string $model;
 
-    /** @var string  $file*/
+    /** @var string */
     public string $file;
 
-    /** @var array $columnsToMap */
+    /** @var array */
     public array $columnsToMap = [];
 
-    /** @var array $requiredColumns */
+    /** @var array */
     public array $requiredColumns = [];
 
-    /** @var array $columnLabels */
+    /** @var array */
     public array $columnLabels = [];
 
     public function mount()
     {
         $this->columnsToMap = $this->mapThroughColumns();
-
+        
         $this->columnLabels = $this->mapThroughColumnLabels();
 
         $this->requiredColumns = $this->mapThroughRequiredColumns();
