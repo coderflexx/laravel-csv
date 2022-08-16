@@ -2,6 +2,9 @@
 
 use Coderflex\LaravelCsv\Http\Livewire\ImportCsv;
 use Coderflex\LaravelCsv\Tests\Models\Customer;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+
 use function Pest\Livewire\livewire;
 
 it('renders import CSV component', function () {
@@ -117,4 +120,29 @@ it('maps through columnsLabels for validate attributes', function () {
         'columnsToMap.name' => 'name',
         'columnsToMap.email' => 'email',
     ]);
+});
+
+it('returns csv headers & row counts when upload a file', function () {
+    Storage::fake('documents');
+
+    $file = UploadedFile::fake()
+                    ->createWithContent(
+                        'customers.csv',
+                        file_get_contents('Data/customers.csv', true)
+                    ); 
+
+    $model = Customer::class;
+
+    livewire(ImportCsv::class, [
+        'model' => $model,
+        'file' => $file,
+    ])
+    ->call('upload')
+    // ->call('updateFileRowcount')
+    ->assertSet('model', $model)
+    ->assertSet('file', $file)
+    ->assertSet('fileHeaders', [
+        "id", "first_name", "last_name", "email", "company", "vip", "birthday", "created_at", "updated_at"
+    ])
+    ->assertSet('csvRowCount', 3);
 });
