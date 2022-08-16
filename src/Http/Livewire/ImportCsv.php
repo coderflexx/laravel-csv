@@ -16,7 +16,7 @@ class ImportCsv extends Component
     /** @var string */
     public string $model;
 
-    /** @var $file */
+    /** @var */
     public $file;
 
     /** @var array */
@@ -28,10 +28,10 @@ class ImportCsv extends Component
     /** @var array */
     public array $columnLabels = [];
 
-    /** @var array $fileHeaders */
+    /** @var array */
     public array $fileHeaders = [];
 
-    /** @var int $fileRowcount */
+    /** @var int */
     public int $fileRowcount = 0;
 
     public function mount()

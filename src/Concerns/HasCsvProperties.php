@@ -17,6 +17,7 @@ trait HasCsvProperties
     public function getReadCsvProperty(): Reader
     {
         dd($this->file);
+
         return $this->readCSV($this->file->getRealPath());
     }
 
@@ -30,7 +31,7 @@ trait HasCsvProperties
     {
         return Statement::create()->process($this->readCsv);
     }
-    
+
     /**
      * Update File Headers
      *

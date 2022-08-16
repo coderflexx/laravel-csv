@@ -18,8 +18,7 @@ trait InteractsWithFiles
         $csv = Reader::createFromStream($stream);
 
         $csv->setHeaderOffset(0);
-        
+
         return $csv;
     }
-    
 }
