@@ -15,7 +15,7 @@ class ImportCsv extends Component
     /** @var string */
     public string $model;
 
-    /** @var */
+    /** @var object */
     public $file;
 
     /** @var array */
@@ -31,7 +31,7 @@ class ImportCsv extends Component
     public array $fileHeaders = [];
 
     /** @var int */
-    public int $fileRowcount = 0;
+    public int $fileRowCount = 0;
 
     public function mount()
     {
@@ -53,11 +53,6 @@ class ImportCsv extends Component
         $this->fileRowCount = count($this->csvRecords);
 
         $this->resetValidation();
-    }
-
-    public function upload()
-    {
-        $this->updatedFile();
     }
 
     public function render()

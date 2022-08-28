@@ -3,9 +3,15 @@
 namespace Coderflex\LaravelCsv\Concerns;
 
 use League\Csv\Reader;
-use League\Csv\ResultSet;
 use League\Csv\Statement;
+use League\Csv\TabularDataReader;
 
+/**
+ * Coderflex\LaravelCsv\Concerns\HasCsvProperties
+ *
+ * @property Reader $readCsv
+ * @property array $csvRecords
+ */
 trait HasCsvProperties
 {
     use InteractsWithCsvFiles;
@@ -13,7 +19,6 @@ trait HasCsvProperties
     /**
      * Read CSV Property
      *
-     * @param  void
      * @return Reader
      */
     public function getReadCsvProperty(): Reader
@@ -24,10 +29,9 @@ trait HasCsvProperties
     /**
      * Get CSV Records Property
      *
-     * @param  void
-     * @return ResultSet
+     * @return TabularDataReader
      */
-    public function getCsvRecordsProperty(): ResultSet
+    public function getCsvRecordsProperty(): TabularDataReader
     {
         return Statement::create()->process($this->readCsv);
     }

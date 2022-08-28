@@ -7,7 +7,6 @@ trait InteractsWithColumns
     /**
      * Converts the columnsToMap property into an associative array.
      *
-     * @param  array  $columnsToMap
      * @return array
      */
     protected function mapThroughColumns(): array
@@ -24,7 +23,6 @@ trait InteractsWithColumns
     /**
      * Maps requiredColumns property into columnsToMap required state.
      *
-     * @param  array  $requiredColumns
      * @return array
      */
     protected function mapThroughRequiredColumns(): array
@@ -44,7 +42,6 @@ trait InteractsWithColumns
     /**
      * Maps columnLabels property into columnsToMap label state.
      *
-     * @param  array  $columnLabels
      * @return array
      */
     protected function mapThroughColumnLabels(): array
