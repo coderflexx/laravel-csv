@@ -4,7 +4,6 @@ use Coderflex\LaravelCsv\Http\Livewire\ImportCsv;
 use Coderflex\LaravelCsv\Tests\Models\Customer;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-
 use function Pest\Livewire\livewire;
 
 it('renders import CSV component', function () {
@@ -129,8 +128,8 @@ it('returns csv headers & row counts when upload a file', function () {
                     ->createWithContent(
                         'customers.csv',
                         file_get_contents('Data/customers.csv', true)
-                    ); 
-    
+                    );
+
     $model = Customer::class;
 
     livewire(ImportCsv::class, [
@@ -139,7 +138,7 @@ it('returns csv headers & row counts when upload a file', function () {
     ->set('file', $file)
     ->assertSet('model', $model)
     ->assertSet('fileHeaders', [
-        "id", "first_name", "last_name", "email", "company", "vip", "birthday", "created_at", "updated_at"
+        'id', 'first_name', 'last_name', 'email', 'company', 'vip', 'birthday', 'created_at', 'updated_at',
     ])
     ->assertSet('fileRowCount', 1000);
 });

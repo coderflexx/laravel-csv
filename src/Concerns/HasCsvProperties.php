@@ -5,7 +5,6 @@ namespace Coderflex\LaravelCsv\Concerns;
 use League\Csv\Reader;
 use League\Csv\ResultSet;
 use League\Csv\Statement;
-use League\Csv\TabularDataReader;
 
 trait HasCsvProperties
 {
