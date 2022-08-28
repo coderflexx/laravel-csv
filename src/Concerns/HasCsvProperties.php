@@ -3,11 +3,14 @@
 namespace Coderflex\LaravelCsv\Concerns;
 
 use League\Csv\Reader;
+use League\Csv\ResultSet;
 use League\Csv\Statement;
 use League\Csv\TabularDataReader;
 
 trait HasCsvProperties
 {
+    use InteractsWithCsvFiles;
+
     /**
      * Read CSV Property
      *
@@ -16,7 +19,6 @@ trait HasCsvProperties
      */
     public function getReadCsvProperty(): Reader
     {
-        dd($this->file);
         return $this->readCSV($this->file->getRealPath());
     }
 
@@ -24,36 +26,10 @@ trait HasCsvProperties
      * Get CSV Records Property
      *
      * @param  void
-     * @return TabularDataReader
+     * @return ResultSet
      */
-    public function getCsvRecordsProperty(): TabularDataReader
+    public function getCsvRecordsProperty(): ResultSet
     {
         return Statement::create()->process($this->readCsv);
-    }
-    
-    /**
-     * Update File Headers
-     *
-     * @param  void
-     * @return array
-     */
-    public function updateFileHeaders(): array
-    {
-        $this->fileHeaders = $this->readCsv->getHeaders();
-
-        return $this->fileHeaders;
-    }
-
-    /**
-     * Update File Row Count
-     *
-     * @param  void
-     * @return int
-     */
-    public function updateFileRowcount(): int
-    {
-        $this->fileRowCount = count($this->csvRecords);
-
-        return $this->fileRowCount;
     }
 }

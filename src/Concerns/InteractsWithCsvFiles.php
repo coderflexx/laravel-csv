@@ -4,7 +4,7 @@ namespace Coderflex\LaravelCsv\Concerns;
 
 use League\Csv\Reader;
 
-trait InteractsWithFiles
+trait InteractsWithCsvFiles
 {
     /**
      * Read CSV File.

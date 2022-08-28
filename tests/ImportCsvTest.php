@@ -130,19 +130,16 @@ it('returns csv headers & row counts when upload a file', function () {
                         'customers.csv',
                         file_get_contents('Data/customers.csv', true)
                     ); 
-
+    
     $model = Customer::class;
 
     livewire(ImportCsv::class, [
         'model' => $model,
-        'file' => $file,
     ])
-    ->call('upload')
-    // ->call('updateFileRowcount')
+    ->set('file', $file)
     ->assertSet('model', $model)
-    ->assertSet('file', $file)
     ->assertSet('fileHeaders', [
         "id", "first_name", "last_name", "email", "company", "vip", "birthday", "created_at", "updated_at"
     ])
-    ->assertSet('csvRowCount', 3);
+    ->assertSet('fileRowCount', 1000);
 });

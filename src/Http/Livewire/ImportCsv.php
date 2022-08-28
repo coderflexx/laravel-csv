@@ -10,7 +10,6 @@ class ImportCsv extends Component
 {
     use WithFileUploads;
     use Concerns\InteractsWithColumns;
-    use Concerns\InteractsWithFiles;
     use Concerns\HasCsvProperties;
 
     /** @var string */
@@ -50,10 +49,9 @@ class ImportCsv extends Component
     {
         $this->validateOnly('file');
 
-        $this->updateFileHeaders();
-
-        $this->updateFileRowcount();
-
+        $this->fileHeaders = $this->readCsv->getHeader();
+        $this->fileRowCount = count($this->csvRecords);
+        
         $this->resetValidation();
     }
 
