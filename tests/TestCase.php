@@ -37,7 +37,7 @@ class TestCase extends Orchestra
     {
         config()->set('database.default', 'testing');
 
-        $migration = include __DIR__.'/../database/migrations/create_csv_table.php.stub';
+        $migration = include __DIR__.'/../database/migrations/create_csv_imports_table.php.stub';
         $migration->up();
 
         $migration = include __DIR__.'/Database/Migrations/create_customers_table.php';
