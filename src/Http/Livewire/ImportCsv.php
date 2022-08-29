@@ -42,7 +42,7 @@ class ImportCsv extends Component
         $this->columnLabels = $this->mapThroughColumnLabels();
 
         // map and coverts the requiredColumns property int key => required value
-        $this->requiredColumns = $this->mapThroughRequiredColumns();
+        // $this->requiredColumns = $this->mapThroughRequiredColumns();
     }
 
     public function updatedFile()
@@ -53,6 +53,11 @@ class ImportCsv extends Component
         $this->fileRowCount = count($this->csvRecords);
 
         $this->resetValidation();
+    }
+
+    public function import()
+    {
+        $this->validate();
     }
 
     public function render()
@@ -69,6 +74,6 @@ class ImportCsv extends Component
     {
         return [
             'file' => 'required|file|mimes:csv,txt',
-        ] + $this->requiredColumns;
+        ] + $this->mapThroughRequiredColumns();
     }
 }

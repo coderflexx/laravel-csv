@@ -28,8 +28,8 @@ it('renders import CSV component with model and file', function () {
 
     livewire(ImportCsv::class, [
         'model' => $model,
-        'file' => $file,
     ])
+    ->set('file', $file)
     ->assertSet('model', $model)
     ->assertSet('file', $file)
     ->assertSuccessful();
@@ -46,9 +46,9 @@ it('transfers columnsToMap into an associative array', function () {
 
     livewire(ImportCsv::class, [
         'model' => $model,
-        'file' => $file,
         'columnsToMap' => $columnsToMap,
     ])
+    ->set('file', $file)
     ->assertSet('model', $model)
     ->assertSet('file', $file)
     ->assertSet('columnsToMap', [
@@ -76,10 +76,10 @@ it('maps requiredColumns property into columnsToMap required state', function ()
 
     livewire(ImportCsv::class, [
         'model' => $model,
-        'file' => $file,
         'columnsToMap' => $columnsToMap,
         'requiredColumns' => $requiredColumns,
     ])
+    ->set('file', $file)
     ->assertSet('model', $model)
     ->assertSet('file', $file)
     ->assertSet('requiredColumns', [
@@ -108,11 +108,11 @@ it('maps through columnsLabels for validate attributes', function () {
 
     livewire(ImportCsv::class, [
         'model' => $model,
-        'file' => $file,
         'columnsToMap' => $columnsToMap,
         'requiredColumns' => $requiredColumns,
         'columnLabels' => $columnLabels,
     ])
+    ->set('file', $file)
     ->assertSet('model', $model)
     ->assertSet('file', $file)
     ->assertSet('columnLabels', [
@@ -141,4 +141,52 @@ it('returns csv headers & row counts when upload a file', function () {
         'id', 'first_name', 'last_name', 'email', 'company', 'vip', 'birthday', 'created_at', 'updated_at',
     ])
     ->assertSet('fileRowCount', 1000);
+});
+
+it('throws validation errors, if the file extension does not match', function () {
+    Storage::fake('images');
+
+    $file = UploadedFile::fake()->create('image.png');
+    $model = Customer::class;
+
+    livewire(ImportCsv::class, [
+        'model' => $model,
+    ])
+    ->set('file', $file)
+    ->assertHasErrors(['file']);
+});
+
+it('throws validation errors, if the columns does not match', function () {
+    Storage::fake('documents');
+
+    $columnsToMap = [
+        'name', 'email', 'phone',
+    ];
+
+    $requiredColumns = [
+        'name', 'email',
+    ];
+
+    $columnLabels = [
+        'name' => 'Name',
+        'email' => 'Email',
+    ];
+
+    $file = UploadedFile::fake()
+        ->createWithContent(
+            'customers.csv',
+            file_get_contents('Data/customers.csv', true)
+        );
+
+    $model = Customer::class;
+
+    livewire(ImportCsv::class, [
+        'model' => $model,
+        'columnsToMap' => $columnsToMap,
+        'requiredColumns' => $requiredColumns,
+        'columnLabels' => $columnLabels,
+    ])
+    ->set('file', $file)
+    ->call('import')
+    ->assertHasErrors(['columnsToMap.name', 'columnsToMap.email']);
 });

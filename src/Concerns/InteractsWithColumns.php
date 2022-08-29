@@ -31,12 +31,10 @@ trait InteractsWithColumns
             return [];
         }
 
-        $this->requiredColumns = collect($this->requiredColumns)
+        return collect($this->requiredColumns)
             ->mapWithKeys(function ($column): array {
                 return ['columnsToMap.'.$column => 'required'];
             })->toArray();
-
-        return $this->requiredColumns;
     }
 
     /**
