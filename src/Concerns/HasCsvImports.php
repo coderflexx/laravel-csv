@@ -9,11 +9,11 @@ trait HasCsvImports
 {
     /**
      * Has imports relationshipt
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
-   public function imports(): MorphMany
-   {
+    public function imports(): MorphMany
+    {
         return $this->morphMany(Import::class, 'importable');
-   }
+    }
 }

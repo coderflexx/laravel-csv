@@ -2,11 +2,12 @@
 
 namespace Coderflex\LaravelCsv\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Coderflex\LaravelCsv\Scopes;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Coderflex\LaravelCsv\Models\Import
+ *
  * @property int $id
  * @property int|null $user_id
  * @property string $file_path
@@ -26,7 +27,7 @@ class Import extends Model
      *
      * @var string
      */
-    protected $table = "csv_imports";
+    protected $table = 'csv_imports';
 
     /**
      * The attributes that are mass assignable.

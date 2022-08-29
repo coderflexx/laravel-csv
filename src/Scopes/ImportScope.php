@@ -8,8 +8,8 @@ trait ImportScope
 {
     /**
      * Completed Status Scope
+     *
      * @return \Illuminate\Database\Eloquent\Builder
-     * 
      */
     public function scopeCompleted(Builder $builder): Builder
     {
@@ -18,8 +18,8 @@ trait ImportScope
 
     /**
      * Not Completed Status Scope
+     *
      * @return \Illuminate\Database\Eloquent\Builder
-     * 
      */
     public function scopeNotCompleted(Builder $builder): Builder
     {
