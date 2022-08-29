@@ -1,6 +1,7 @@
 <?php
 
 use Coderflex\LaravelCsv\Http\Livewire\ImportCsv;
+use Coderflex\LaravelCsv\Models\Import;
 use Coderflex\LaravelCsv\Tests\Models\Customer;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -190,3 +191,25 @@ it('throws validation errors, if the columns does not match', function () {
     ->call('import')
     ->assertHasErrors(['columnsToMap.name', 'columnsToMap.email']);
 });
+
+it('it creates a new import records', function () {
+    Storage::fake('documents');
+
+    $file = UploadedFile::fake()
+        ->createWithContent(
+            'customers.csv',
+            file_get_contents('Data/customers.csv', true)
+        );
+
+    $model = Customer::class;
+
+    livewire(ImportCsv::class, [
+        'model' => $model,
+    ])
+    ->set('file', $file)
+    ->call('import')
+    ->assertHasNoErrors();
+
+    $this->assertEquals(Import::count(), 1);
+});
+

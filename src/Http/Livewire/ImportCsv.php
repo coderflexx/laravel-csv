@@ -58,6 +58,8 @@ class ImportCsv extends Component
     public function import()
     {
         $this->validate();
+
+        $import = $this->createNewImport();
     }
 
     public function render()
@@ -75,5 +77,15 @@ class ImportCsv extends Component
         return [
             'file' => 'required|file|mimes:csv,txt',
         ] + $this->mapThroughRequiredColumns();
+    }
+
+    protected function createNewImport()
+    {
+        return (new $this->model)->imports()->create([
+            'user_id' => auth()->id() ?? null,
+            'file_path' => $this->file->getRealPath(),
+            'file_name' => $this->file->getClientOriginalName(),
+            'total_rows' => $this->fileRowCount,
+        ]);
     }
 }
