@@ -212,4 +212,3 @@ it('it creates a new import records', function () {
 
     $this->assertEquals(Import::count(), 1);
 });
-
