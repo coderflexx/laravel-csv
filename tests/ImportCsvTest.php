@@ -25,14 +25,17 @@ it('renders import CSV component with model', function () {
 it('renders import CSV component with model and file', function () {
     $model = Customer::class;
 
-    $file = __DIR__.'./Data/customers.csv';
+    $file = UploadedFile::fake()
+        ->createWithContent(
+            'customers.csv',
+            file_get_contents('Data/customers.csv', true)
+        );
 
     livewire(ImportCsv::class, [
         'model' => $model,
     ])
     ->set('file', $file)
     ->assertSet('model', $model)
-    ->assertSet('file', $file)
     ->assertSuccessful();
 });
 
@@ -43,15 +46,12 @@ it('transfers columnsToMap into an associative array', function () {
         'phone',
     ];
     $model = Customer::class;
-    $file = __DIR__.'./Data/customers.csv';
 
     livewire(ImportCsv::class, [
         'model' => $model,
         'columnsToMap' => $columnsToMap,
     ])
-    ->set('file', $file)
     ->assertSet('model', $model)
-    ->assertSet('file', $file)
     ->assertSet('columnsToMap', [
         'name' => '',
         'email' => '',
@@ -73,16 +73,13 @@ it('maps requiredColumns property into columnsToMap required state', function ()
         'phone',
     ];
     $model = Customer::class;
-    $file = __DIR__.'./Data/customers.csv';
 
     livewire(ImportCsv::class, [
         'model' => $model,
         'columnsToMap' => $columnsToMap,
         'requiredColumns' => $requiredColumns,
     ])
-    ->set('file', $file)
     ->assertSet('model', $model)
-    ->assertSet('file', $file)
     ->assertSet('requiredColumns', [
         'columnsToMap.name' => 'required',
         'columnsToMap.email' => 'required',
@@ -105,7 +102,6 @@ it('maps through columnsLabels for validate attributes', function () {
     ];
 
     $model = Customer::class;
-    $file = __DIR__.'./Data/customers.csv';
 
     livewire(ImportCsv::class, [
         'model' => $model,
@@ -113,9 +109,7 @@ it('maps through columnsLabels for validate attributes', function () {
         'requiredColumns' => $requiredColumns,
         'columnLabels' => $columnLabels,
     ])
-    ->set('file', $file)
     ->assertSet('model', $model)
-    ->assertSet('file', $file)
     ->assertSet('columnLabels', [
         'columnsToMap.name' => 'name',
         'columnsToMap.email' => 'email',

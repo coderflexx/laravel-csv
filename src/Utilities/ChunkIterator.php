@@ -10,21 +10,20 @@ use Iterator;
  * requires a considerable amount of processing time to generate.
  * Instead of excuting directly in-memory, we yeild the results as
  * many times as we need.
- * 
+ *
  * @see https://www.php.net/manual/en/language.generators.overview.php
  * @see https://www.php.net/manual/en/language.generators.syntax.php#control-structures.yield
  * @see https://www.php.net/manual/en/language.oop5.iterations.php
- * 
  */
 class ChunkIterator
 {
     /**
-     * @var Iterator $iterator
+     * @var Iterator
      */
     protected Iterator $iterator;
 
     /**
-     * @var int $chunkSize
+     * @var int
      */
     protected int $chunkSize;
 

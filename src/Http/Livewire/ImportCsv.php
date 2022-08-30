@@ -4,7 +4,6 @@ namespace Coderflex\LaravelCsv\Http\Livewire;
 
 use Coderflex\LaravelCsv\Concerns;
 use Coderflex\LaravelCsv\Utilities\ChunkIterator;
-use League\Csv\Statement;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -63,8 +62,6 @@ class ImportCsv extends Component
 
         $import = $this->createNewImport();
         $chunks = (new ChunkIterator($this->csvRecords->getRecords(), 10))->get();
-
-        
     }
 
     public function render()
