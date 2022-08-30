@@ -11,7 +11,7 @@ it('interate over a csv and returns the result as chunked collection', function 
             'customers.csv',
             file_get_contents('Data/customers.csv', true)
         );
-    
+
     $stream = fopen($file->getRealPath(), 'r');
     $csv = Reader::createFromStream($stream);
 
@@ -22,7 +22,7 @@ it('interate over a csv and returns the result as chunked collection', function 
     $chunks = (new ChunkIterator($statement->getRecords(), 10))->get();
 
     $result = collect($chunks);
-    
+
     $this->assertEquals(count((array) $result->first()), 10);
     $this->assertEquals($result->keys()->count(), 100);
 });
