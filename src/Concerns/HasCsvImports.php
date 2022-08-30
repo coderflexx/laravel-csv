@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 trait HasCsvImports
 {
     /**
-     * Has imports relationshipt
+     * Has imports relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany<Import>
      */
     public function imports(): MorphMany
     {
