@@ -61,6 +61,7 @@ class ImportCsv extends Component
         $this->validate();
 
         $import = $this->createNewImport();
+        
         $chunks = (new ChunkIterator($this->csvRecords->getRecords(), 10))->get();
     }
 
