@@ -25,4 +25,15 @@ trait ImportScope
     {
         return $builder->whereNull('completed_at');
     }
+
+    /**
+     * Fetch imports based on the given model
+     * 
+     * @param string $model
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeForModel(Builder $builder, string $model): Builder
+    {
+        return $builder->where('importable_type', $model);
+    }
 }
