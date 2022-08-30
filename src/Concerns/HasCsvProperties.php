@@ -10,7 +10,7 @@ use League\Csv\TabularDataReader;
  * Coderflex\LaravelCsv\Concerns\HasCsvProperties
  *
  * @property Reader $readCsv
- * @property array $csvRecords
+ * @property \League\Csv\TabularDataReader $csvRecords
  */
 trait HasCsvProperties
 {
