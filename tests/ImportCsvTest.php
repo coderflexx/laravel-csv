@@ -209,7 +209,7 @@ it('creates a new import records', function () {
     ->set('file', $file)
     ->call('import')
     ->assertHasNoErrors();
-    
+
     $this->assertEquals(Import::count(), 1);
     $this->assertEquals(Import::forModel(Customer::class)->count(), 1);
 });

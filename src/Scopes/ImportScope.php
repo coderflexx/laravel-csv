@@ -28,8 +28,8 @@ trait ImportScope
 
     /**
      * Fetch imports based on the given model
-     * 
-     * @param string $model
+     *
+     * @param  string  $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeForModel(Builder $builder, string $model): Builder
