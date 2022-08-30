@@ -28,7 +28,7 @@ it('renders import CSV component with model and file', function () {
     $file = UploadedFile::fake()
         ->createWithContent(
             'customers.csv',
-            file_get_contents('Data/customers.csv', true)
+            file_get_contents('stubs/customers.csv', true)
         );
 
     livewire(ImportCsv::class, [
@@ -122,7 +122,7 @@ it('returns csv headers & row counts when upload a file', function () {
     $file = UploadedFile::fake()
                     ->createWithContent(
                         'customers.csv',
-                        file_get_contents('Data/customers.csv', true)
+                        file_get_contents('stubs/customers.csv', true)
                     );
 
     $model = Customer::class;
@@ -170,7 +170,7 @@ it('throws validation errors, if the columns does not match', function () {
     $file = UploadedFile::fake()
         ->createWithContent(
             'customers.csv',
-            file_get_contents('Data/customers.csv', true)
+            file_get_contents('stubs/customers.csv', true)
         );
 
     $model = Customer::class;
@@ -192,7 +192,7 @@ it('creates a new import records', function () {
     $file = UploadedFile::fake()
         ->createWithContent(
             'customers.csv',
-            file_get_contents('Data/customers.csv', true)
+            file_get_contents('stubs/customers.csv', true)
         );
 
     $model = Customer::class;
