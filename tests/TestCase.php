@@ -2,8 +2,8 @@
 
 namespace Coderflex\LaravelCsv\Tests;
 
+use Coderflex\LaravelCsv\Http\Livewire\CsvImporter;
 use Coderflex\LaravelCsv\Http\Livewire\HandleImports;
-use Coderflex\LaravelCsv\Http\Livewire\ImportCsv;
 use Coderflex\LaravelCsv\LaravelCsvServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Livewire\Livewire;
@@ -46,7 +46,7 @@ class TestCase extends Orchestra
 
     public function registerLivewireComponents()
     {
-        Livewire::component(ImportCsv::class, 'import-csv');
+        Livewire::component(CsvImporter::class, 'csv-importer');
         Livewire::component(HandleImports::class, 'handle-imports');
     }
 }

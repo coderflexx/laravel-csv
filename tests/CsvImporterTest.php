@@ -1,6 +1,6 @@
 <?php
 
-use Coderflex\LaravelCsv\Http\Livewire\ImportCsv;
+use Coderflex\LaravelCsv\Http\Livewire\CsvImporter;
 use Coderflex\LaravelCsv\Models\Import;
 use Coderflex\LaravelCsv\Tests\Models\Customer;
 use Illuminate\Http\UploadedFile;
@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\Storage;
 use function Pest\Livewire\livewire;
 
 it('renders import CSV component', function () {
-    livewire(ImportCsv::class)
+    livewire(CsvImporter::class)
         ->assertSuccessful();
 });
 
 it('renders import CSV component with model', function () {
     $model = Customer::class;
 
-    livewire(ImportCsv::class, [
+    livewire(CsvImporter::class, [
         'model' => $model,
     ])
     ->assertSet('model', $model)
@@ -31,7 +31,7 @@ it('renders import CSV component with model and file', function () {
             file_get_contents('stubs/customers.csv', true)
         );
 
-    livewire(ImportCsv::class, [
+    livewire(CsvImporter::class, [
         'model' => $model,
     ])
     ->set('file', $file)
@@ -48,7 +48,7 @@ it('throws a validation error if the csv file empty', function () {
             file_get_contents('stubs/empty.csv', true)
         );
 
-    livewire(ImportCsv::class, [
+    livewire(CsvImporter::class, [
         'model' => $model,
     ])
         ->set('file', $file)
@@ -65,7 +65,7 @@ it('throws a validation error if the csv file has duplicate headers', function (
             file_get_contents('stubs/file_with_duplicate_headers.csv', true)
         );
 
-    livewire(ImportCsv::class, [
+    livewire(CsvImporter::class, [
         'model' => $model,
     ])
         ->set('file', $file)
@@ -81,7 +81,7 @@ it('transfers columnsToMap into an associative array', function () {
     ];
     $model = Customer::class;
 
-    livewire(ImportCsv::class, [
+    livewire(CsvImporter::class, [
         'model' => $model,
         'columnsToMap' => $columnsToMap,
     ])
@@ -108,7 +108,7 @@ it('maps requiredColumns property into columnsToMap required state', function ()
     ];
     $model = Customer::class;
 
-    livewire(ImportCsv::class, [
+    livewire(CsvImporter::class, [
         'model' => $model,
         'columnsToMap' => $columnsToMap,
         'requiredColumns' => $requiredColumns,
@@ -137,7 +137,7 @@ it('maps through columnsLabels for validate attributes', function () {
 
     $model = Customer::class;
 
-    livewire(ImportCsv::class, [
+    livewire(CsvImporter::class, [
         'model' => $model,
         'columnsToMap' => $columnsToMap,
         'requiredColumns' => $requiredColumns,
@@ -161,7 +161,7 @@ it('returns csv headers & row counts when upload a file', function () {
 
     $model = Customer::class;
 
-    livewire(ImportCsv::class, [
+    livewire(CsvImporter::class, [
         'model' => $model,
     ])
     ->set('file', $file)
@@ -178,7 +178,7 @@ it('throws validation errors, if the file extension does not match', function ()
     $file = UploadedFile::fake()->create('image.png');
     $model = Customer::class;
 
-    livewire(ImportCsv::class, [
+    livewire(CsvImporter::class, [
         'model' => $model,
     ])
     ->set('file', $file)
@@ -209,7 +209,7 @@ it('throws validation errors, if the columns does not match', function () {
 
     $model = Customer::class;
 
-    livewire(ImportCsv::class, [
+    livewire(CsvImporter::class, [
         'model' => $model,
         'columnsToMap' => $columnsToMap,
         'requiredColumns' => $requiredColumns,
@@ -231,7 +231,7 @@ it('creates a new import records', function () {
 
     $model = Customer::class;
 
-    livewire(ImportCsv::class, [
+    livewire(CsvImporter::class, [
         'model' => $model,
     ])
     ->set('file', $file)
