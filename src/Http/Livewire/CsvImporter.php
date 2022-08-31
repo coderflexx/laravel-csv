@@ -123,19 +123,19 @@ class CsvImporter extends Component
         $import = $this->createNewImport();
         $chunks = (new ChunkIterator($this->csvRecords->getIterator(), 10))->get();
 
-        // $jobs = collect($chunks)
-        //             ->map(
-        //                 fn ($chunk) => new ImportCsv(
-        //                     $import,
-        //                     $this->model,
-        //                     $chunk,
-        //                     $this->columnsToMap
-        //                 )
-        //             );
+        $jobs = collect($chunks)
+                    ->map(
+                        fn ($chunk) => new ImportCsv(
+                            $import,
+                            $this->model,
+                            $chunk,
+                            $this->columnsToMap
+                        )
+                    );
 
-        // Bus::batch($jobs)
-        //             ->finally(
-        //                 fn () => $import->touch('compoleted_at')
-        //             )->dispatch();
+        Bus::batch($jobs)
+                    ->finally(
+                        fn () => $import->touch('compoleted_at')
+                    )->dispatch();
     }
 }
