@@ -13,7 +13,6 @@ use Illuminate\Queue\SerializesModels;
 class ImportCsv implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
     use Batchable;
 
     /**
@@ -26,7 +25,8 @@ class ImportCsv implements ShouldQueue
         public string $model,
         public array $chunk,
         public array $columns,
-    ) { /** */}
+    ) {
+    }
 
     /**
      * Execute the job.
