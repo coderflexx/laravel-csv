@@ -56,7 +56,6 @@ it('throws a validation error if the csv file empty', function () {
         ->assertHasErrors(['file_error']);
 });
 
-
 it('transfers columnsToMap into an associative array', function () {
     $columnsToMap = [
         'name',

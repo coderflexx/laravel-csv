@@ -40,7 +40,7 @@ trait HasCsvProperties
 
     /**
      * Handle CSV Information properties from the given file
-     * 
+     *
      * @return array|Illuminate\Support\MessageBag
      */
     public function handleCsvProperties(): array|MessageBag
@@ -50,12 +50,11 @@ trait HasCsvProperties
             $fileRowCount = $this->csvRecords->count();
 
             return [$fileHeaders, $fileRowCount];
-
         } catch(\League\Csv\SyntaxError $exception) {
             Log::warning($exception->getMessage());
 
             return $this->addError(
-                'file_error', 
+                'file_error',
                 __('Your CSV file has error/errors, or is empty. Please check, and try again')
             );
         }
