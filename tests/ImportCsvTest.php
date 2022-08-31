@@ -56,6 +56,22 @@ it('throws a validation error if the csv file empty', function () {
         ->assertHasErrors(['file_error']);
 });
 
+it('throws a validation error if the csv file has duplicate headers', function () {
+    $model = Customer::class;
+
+    $file = UploadedFile::fake()
+        ->createWithContent(
+            'customers.csv',
+            file_get_contents('stubs/file_with_duplicate_headers.csv', true)
+        );
+
+    livewire(ImportCsv::class, [
+        'model' => $model,
+    ])
+        ->set('file', $file)
+        ->assertSet('model', $model)
+        ->assertHasErrors(['file_error']);
+});
 
 it('transfers columnsToMap into an associative array', function () {
     $columnsToMap = [

@@ -53,7 +53,7 @@ class ImportCsv extends Component
         $this->validateOnly('file');
 
         $this->setCsvProperties();
-        
+
         $this->resetValidation();
     }
 
@@ -94,7 +94,6 @@ class ImportCsv extends Component
                 }
             });
         })->validate();
-
 
         [$this->fileHeaders, $this->fileRowCount] = $this->handleCsvProperties();
     }
