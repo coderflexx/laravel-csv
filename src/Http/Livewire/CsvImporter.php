@@ -3,13 +3,15 @@
 namespace Coderflex\LaravelCsv\Http\Livewire;
 
 use Coderflex\LaravelCsv\Concerns;
+use Coderflex\LaravelCsv\Jobs\ImportCsv;
 use Coderflex\LaravelCsv\Utilities\ChunkIterator;
+use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\MessageBag;
 use Illuminate\Validation\Validator;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class ImportCsv extends Component
+class CsvImporter extends Component
 {
     use WithFileUploads;
     use Concerns\InteractsWithColumns;
@@ -36,6 +38,12 @@ class ImportCsv extends Component
     /** @var int */
     public int $fileRowCount = 0;
 
+    /** @var array */
+    protected $exception = [
+        'mode', 'columnsToMap', 'open',
+        'columnLabels', 'requiredColumns',
+    ];
+
     public function mount()
     {
         // map and coverts the columnsToMap property into an associative array
@@ -61,9 +69,11 @@ class ImportCsv extends Component
     {
         $this->validate();
 
-        $import = $this->createNewImport();
+        $this->importCsv();
 
-        $chunks = (new ChunkIterator($this->csvRecords->getIterator(), 10))->get();
+        $this->resetExcept($this->exceptions);
+
+        $this->emitTo('csv-imports', 'imports.refresh');
     }
 
     public function render()
@@ -106,5 +116,26 @@ class ImportCsv extends Component
             'file_name' => $this->file->getClientOriginalName(),
             'total_rows' => $this->fileRowCount,
         ]);
+    }
+
+    protected function importCsv()
+    {
+        $import = $this->createNewImport();
+        $chunks = (new ChunkIterator($this->csvRecords->getIterator(), 10))->get();
+
+        $jobs = collect($chunks)
+                    ->map(
+                        fn ($chunk) => new ImportCsv(
+                            $import,
+                            $this->model,
+                            $chunk,
+                            $this->columnsToMap
+                        )
+                    );
+
+        Bus::batch($jobs)
+                    ->finally(
+                        fn () => $import->touch('compoleted_at')
+                    )->dispatch();
     }
 }
