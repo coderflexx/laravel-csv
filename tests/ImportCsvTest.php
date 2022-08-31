@@ -39,6 +39,24 @@ it('renders import CSV component with model and file', function () {
     ->assertSuccessful();
 });
 
+it('throws a validation error if the csv file empty', function () {
+    $model = Customer::class;
+
+    $file = UploadedFile::fake()
+        ->createWithContent(
+            'customers.csv',
+            file_get_contents('stubs/empty.csv', true)
+        );
+
+    livewire(ImportCsv::class, [
+        'model' => $model,
+    ])
+        ->set('file', $file)
+        ->assertSet('model', $model)
+        ->assertHasErrors(['file_error']);
+});
+
+
 it('transfers columnsToMap into an associative array', function () {
     $columnsToMap = [
         'name',

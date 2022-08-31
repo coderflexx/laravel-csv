@@ -4,6 +4,8 @@ namespace Coderflex\LaravelCsv\Http\Livewire;
 
 use Coderflex\LaravelCsv\Concerns;
 use Coderflex\LaravelCsv\Utilities\ChunkIterator;
+use Illuminate\Support\MessageBag;
+use Illuminate\Validation\Validator;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -50,9 +52,8 @@ class ImportCsv extends Component
     {
         $this->validateOnly('file');
 
-        $this->fileHeaders = $this->readCsv->getHeader();
-        $this->fileRowCount = count($this->csvRecords);
-
+        $this->setCsvProperties();
+        
         $this->resetValidation();
     }
 
@@ -62,7 +63,7 @@ class ImportCsv extends Component
 
         $import = $this->createNewImport();
 
-        $chunks = (new ChunkIterator($this->csvRecords->getRecords(), 10))->get();
+        $chunks = (new ChunkIterator($this->csvRecords->getIterator(), 10))->get();
     }
 
     public function render()
@@ -80,6 +81,22 @@ class ImportCsv extends Component
         return [
             'file' => 'required|file|mimes:csv,txt',
         ] + $this->requiredColumns;
+    }
+
+    protected function setCsvProperties()
+    {
+        $this->withValidator(function (Validator $validator) {
+            $validator->after(function ($validator) {
+                if ($this->handleCsvProperties() instanceof MessageBag) {
+                    $validator->errors()->merge(
+                        $this->handleCsvProperties()->getMessages()
+                    );
+                }
+            });
+        })->validate();
+
+
+        [$this->fileHeaders, $this->fileRowCount] = $this->handleCsvProperties();
     }
 
     protected function createNewImport()

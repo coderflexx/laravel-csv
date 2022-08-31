@@ -19,7 +19,7 @@ it('interate over a csv and returns the result as chunked collection', function 
 
     $statement = Statement::create()->process($file);
 
-    $chunks = (new ChunkIterator($statement->getRecords(), 10))->get();
+    $chunks = (new ChunkIterator($statement->getIterator(), 10))->get();
 
     $result = collect($chunks);
 

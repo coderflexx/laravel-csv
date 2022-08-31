@@ -3,6 +3,7 @@
 namespace Coderflex\LaravelCsv\Concerns;
 
 use League\Csv\Reader;
+use Throwable;
 
 trait InteractsWithCsvFiles
 {
@@ -16,8 +17,9 @@ trait InteractsWithCsvFiles
     {
         $stream = fopen($path, 'r');
         $csv = Reader::createFromStream($stream);
-
-        $csv->setHeaderOffset(0);
+        
+        $csv->setHeaderOffset(0)
+            ->skipEmptyRecords();
 
         return $csv;
     }
