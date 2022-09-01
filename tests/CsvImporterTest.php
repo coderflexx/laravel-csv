@@ -1,7 +1,6 @@
 <?php
 
 use Coderflex\LaravelCsv\Http\Livewire\CsvImporter;
-use Coderflex\LaravelCsv\Jobs\ImportCsv;
 use Coderflex\LaravelCsv\Models\Import;
 use Coderflex\LaravelCsv\Tests\Models\Customer;
 use Illuminate\Bus\PendingBatch;
