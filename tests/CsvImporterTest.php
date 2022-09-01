@@ -1,7 +1,6 @@
 <?php
 
 use Coderflex\LaravelCsv\Http\Livewire\CsvImporter;
-use Coderflex\LaravelCsv\Jobs\ImportCsv;
 use Coderflex\LaravelCsv\Models\Import;
 use Coderflex\LaravelCsv\Tests\Models\Customer;
 use Illuminate\Bus\PendingBatch;
@@ -264,3 +263,5 @@ it('ensures the imports is batched', function () {
     $this->assertEquals(Import::count(), 1);
     $this->assertEquals(Import::forModel(Customer::class)->count(), 1);
 });
+
+// TODO: ADD MODEL INSERTION TESTS WITHOU BATCH
