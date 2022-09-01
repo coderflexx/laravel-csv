@@ -18,7 +18,7 @@ class CsvImporter extends Component
     use Concerns\HasCsvProperties;
 
     /** @var string */
-    public string $model;
+    public $model;
 
     /** @var object */
     public $file;
@@ -134,6 +134,7 @@ class CsvImporter extends Component
                     );
 
         Bus::batch($jobs)
+                    ->name('import-csv')
                     ->finally(
                         fn () => $import->touch('compoleted_at')
                     )->dispatch();

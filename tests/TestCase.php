@@ -42,6 +42,9 @@ class TestCase extends Orchestra
 
         $migration = include __DIR__.'/Database/Migrations/create_customers_table.php';
         $migration->up();
+
+        $migration = include __DIR__. '/Database/Migrations/create_job_batches_table.php';
+        $migration->up();
     }
 
     public function registerLivewireComponents()

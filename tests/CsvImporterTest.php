@@ -1,9 +1,12 @@
 <?php
 
 use Coderflex\LaravelCsv\Http\Livewire\CsvImporter;
+use Coderflex\LaravelCsv\Jobs\ImportCsv;
 use Coderflex\LaravelCsv\Models\Import;
 use Coderflex\LaravelCsv\Tests\Models\Customer;
+use Illuminate\Bus\PendingBatch;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Storage;
 use function Pest\Livewire\livewire;
 
@@ -220,8 +223,16 @@ it('throws validation errors, if the columns does not match', function () {
     ->assertHasErrors(['columnsToMap.name', 'columnsToMap.email']);
 });
 
-it('creates a new import records', function () {
+it('ensures the imports is batched', function () {
     Storage::fake('documents');
+    Bus::fake();
+
+    $columnsToMap = [
+        'id',
+        'first_name',
+        'last_name',
+        'email',
+    ];
 
     $file = UploadedFile::fake()
         ->createWithContent(
@@ -233,10 +244,22 @@ it('creates a new import records', function () {
 
     livewire(CsvImporter::class, [
         'model' => $model,
+        'columnsToMap' => $columnsToMap,
     ])
     ->set('file', $file)
+    ->set('columnsToMap', [
+        'id' => 'id',
+        'fist_name' => 'fist_name',
+        'last_name' => 'last_name',
+        'email' => 'email',
+    ])
     ->call('import')
     ->assertHasNoErrors();
+
+    Bus::assertBatched(function (PendingBatch $batch) {
+        return $batch->name == 'import-csv' &&
+               $batch->jobs->count() === 100;
+    });
 
     $this->assertEquals(Import::count(), 1);
     $this->assertEquals(Import::forModel(Customer::class)->count(), 1);
