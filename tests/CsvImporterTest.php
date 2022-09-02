@@ -245,6 +245,7 @@ it('ensures the imports is batched', function () {
         'email' => 'email',
     ])
     ->call('import')
+    ->assertEmitted('imports.refresh')
     ->assertHasNoErrors();
 
     Bus::assertBatched(function (PendingBatch $batch) {
@@ -268,15 +269,16 @@ it('creates customers records on top of csv file', function () {
     livewire(CsvImporter::class, [
         'model' => $model,
     ])
-        ->set('file', $file)
-        ->set('columnsToMap', [
-            'id' => 'id',
-            'first_name' => 'first_name',
-            'last_name' => 'last_name',
-            'email' => 'email',
-        ])
-        ->call('import')
-        ->assertHasNoErrors();
+    ->set('file', $file)
+    ->set('columnsToMap', [
+        'id' => 'id',
+        'first_name' => 'first_name',
+        'last_name' => 'last_name',
+        'email' => 'email',
+    ])
+    ->call('import')
+    ->assertEmitted('imports.refresh')
+    ->assertHasNoErrors();
 
     $import = Import::forModel(Customer::class);
 
