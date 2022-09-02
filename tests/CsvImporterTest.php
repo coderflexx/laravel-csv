@@ -226,13 +226,6 @@ it('ensures the imports is batched', function () {
     Storage::fake('documents');
     Bus::fake();
 
-    $columnsToMap = [
-        'id',
-        'first_name',
-        'last_name',
-        'email',
-    ];
-
     $file = UploadedFile::fake()
         ->createWithContent(
             'customers.csv',
@@ -243,12 +236,11 @@ it('ensures the imports is batched', function () {
 
     livewire(CsvImporter::class, [
         'model' => $model,
-        'columnsToMap' => $columnsToMap,
     ])
     ->set('file', $file)
     ->set('columnsToMap', [
         'id' => 'id',
-        'fist_name' => 'fist_name',
+        'first_name' => 'first_name',
         'last_name' => 'last_name',
         'email' => 'email',
     ])
@@ -264,4 +256,32 @@ it('ensures the imports is batched', function () {
     $this->assertEquals(Import::forModel(Customer::class)->count(), 1);
 });
 
-// TODO: ADD MODEL INSERTION TESTS WITHOU BATCH
+it('creates customers records on top of csv file', function () {
+    $file = UploadedFile::fake()
+        ->createWithContent(
+            'customers.csv',
+            file_get_contents('stubs/customers.csv', true)
+        );
+
+    $model = Customer::class;
+
+    livewire(CsvImporter::class, [
+        'model' => $model,
+    ])
+        ->set('file', $file)
+        ->set('columnsToMap', [
+            'id' => 'id',
+            'first_name' => 'first_name',
+            'last_name' => 'last_name',
+            'email' => 'email',
+        ])
+        ->call('import')
+        ->assertHasNoErrors();
+
+    $import = Import::forModel(Customer::class);
+
+    $this->assertEquals(Import::count(), 1);
+    $this->assertEquals($import->count(), 1);
+    $this->assertEquals(Customer::count(), 1000);
+    $this->assertEquals($import->first()->processed_rows, 1000);
+});
