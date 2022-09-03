@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $id
  * @property int|null $user_id
+ * @property string $model
  * @property string $file_path
  * @property string $file_name
  * @property int $total_rows
@@ -30,14 +31,9 @@ class Import extends Model
     protected $table = 'csv_imports';
 
     /**
-     * The attributes that are mass assignable.
+     * The attributes that aren't mass assignable.
      *
-     * @var string[]
+     * @var array<string>|bool
      */
     protected $guarded = [];
-
-    public function importable()
-    {
-        return $this->morphTo();
-    }
 }

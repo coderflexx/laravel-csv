@@ -132,7 +132,8 @@ class CsvImporter extends Component
 
     protected function createNewImport()
     {
-        /** @var \Illuminate\Foundation\Auth\User */
+        /** 
+         * @var \Coderflex\LaravelCsv\Tests\Models\User */
         $user = auth()->user();
 
         return $user->imports()->create([
