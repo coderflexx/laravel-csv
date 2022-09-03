@@ -2,7 +2,6 @@
 
 namespace Coderflex\LaravelCsv\Tests\Models;
 
-use Coderflex\LaravelCsv\Concerns\HasCsvImports;
 use Coderflex\LaravelCsv\Tests\Database\Factories\CustomerFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

@@ -38,10 +38,10 @@ class TestCase extends Orchestra
         config()->set('database.default', 'testing');
 
         $migrations = [
-            include __DIR__ . '/../database/migrations/create_csv_imports_table.php.stub',
-            include __DIR__ . '/Database/Migrations/create_customers_table.php',
-            include __DIR__ . '/Database/Migrations/create_users_table.php',
-            include __DIR__ . '/Database/Migrations/create_job_batches_table.php',
+            include __DIR__.'/../database/migrations/create_csv_imports_table.php.stub',
+            include __DIR__.'/Database/Migrations/create_customers_table.php',
+            include __DIR__.'/Database/Migrations/create_users_table.php',
+            include __DIR__.'/Database/Migrations/create_job_batches_table.php',
         ];
 
         collect($migrations)->each(fn ($path) => $path->up());

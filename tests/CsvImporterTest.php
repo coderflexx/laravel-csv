@@ -262,7 +262,7 @@ it('ensures the imports is batched', function () {
 
 it('creates customers records on top of csv file', function () {
     $this->actingAs(User::factory()->create());
-    
+
     $file = UploadedFile::fake()
         ->createWithContent(
             'customers.csv',

@@ -17,4 +17,3 @@ it('renders handle imports component with model', function () {
         ->assertSet('model', $model)
         ->assertSuccessful();
 });
-
