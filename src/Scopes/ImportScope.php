@@ -3,6 +3,7 @@
 namespace Coderflex\LaravelCsv\Scopes;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Foundation\Auth\User;
 
 trait ImportScope
 {
@@ -35,5 +36,16 @@ trait ImportScope
     public function scopeForModel(Builder $builder, string $model): Builder
     {
         return $builder->where('importable_type', $model);
+    }
+
+    /**
+     * Fetch imports on the user id
+     *
+     * @param  \Illuminate\Foundation\Auth\User  $user
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeForUser(Builder $builder, User $user): Builder
+    {
+        return $builder->where('user_id', $user);
     }
 }
