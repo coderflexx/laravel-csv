@@ -35,7 +35,7 @@ trait ImportScope
      */
     public function scopeForModel(Builder $builder, string $model): Builder
     {
-        return $builder->where('importable_type', $model);
+        return $builder->where('model', $model);
     }
 
     /**

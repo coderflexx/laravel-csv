@@ -10,8 +10,8 @@ return new class extends Migration
     {
         Schema::create('csv_imports', function (Blueprint $table) {
             $table->id();
-            $table->nullableMorphs('importable');
-            $table->foreignId('user_id')->nullable();
+            $table->foreignId('user_id')->constrained();
+            $table->string('model');
             $table->string('file_path');
             $table->string('file_name');
             $table->unsignedBigInteger('total_rows');

@@ -3,17 +3,17 @@
 namespace Coderflex\LaravelCsv\Concerns;
 
 use Coderflex\LaravelCsv\Models\Import;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait HasCsvImports
 {
     /**
      * Has imports relationship
      *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany<Import>
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Import>
      */
-    public function imports(): MorphMany
+    public function imports(): HasMany
     {
-        return $this->morphMany(Import::class, 'importable');
+        return $this->hasMany(Import::class, 'user_id');
     }
 }

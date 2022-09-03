@@ -5,6 +5,7 @@ namespace Coderflex\LaravelCsv\Http\Livewire;
 use Coderflex\LaravelCsv\Concerns;
 use Coderflex\LaravelCsv\Jobs\ImportCsv;
 use Coderflex\LaravelCsv\Utilities\ChunkIterator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\MessageBag;
 use Illuminate\Validation\Validator;
@@ -108,16 +109,6 @@ class CsvImporter extends Component
         [$this->fileHeaders, $this->fileRowCount] = $this->handleCsvProperties();
     }
 
-    protected function createNewImport()
-    {
-        return (new $this->model)->imports()->create([
-            'user_id' => auth()->id() ?? null,
-            'file_path' => $this->file->getRealPath(),
-            'file_name' => $this->file->getClientOriginalName(),
-            'total_rows' => $this->fileRowCount,
-        ]);
-    }
-
     protected function importCsv()
     {
         $import = $this->createNewImport();
@@ -138,5 +129,18 @@ class CsvImporter extends Component
                     ->finally(
                         fn () => $import->touch('compoleted_at')
                     )->dispatch();
+    }
+
+    protected function createNewImport()
+    {
+        /** @var \Illuminate\Foundation\Auth\User */
+        $user = auth()->user();
+
+        return $user->imports()->create([
+            'model' => $this->model,
+            'file_path' => $this->file->getRealPath(),
+            'file_name' => $this->file->getClientOriginalName(),
+            'total_rows' => $this->fileRowCount,
+        ]);
     }
 }

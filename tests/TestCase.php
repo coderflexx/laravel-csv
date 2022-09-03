@@ -37,14 +37,14 @@ class TestCase extends Orchestra
     {
         config()->set('database.default', 'testing');
 
-        $migration = include __DIR__.'/../database/migrations/create_csv_imports_table.php.stub';
-        $migration->up();
+        $migrations = [
+            include __DIR__ . '/../database/migrations/create_csv_imports_table.php.stub',
+            include __DIR__ . '/Database/Migrations/create_customers_table.php',
+            include __DIR__ . '/Database/Migrations/create_users_table.php',
+            include __DIR__ . '/Database/Migrations/create_job_batches_table.php',
+        ];
 
-        $migration = include __DIR__.'/Database/Migrations/create_customers_table.php';
-        $migration->up();
-
-        $migration = include __DIR__.'/Database/Migrations/create_job_batches_table.php';
-        $migration->up();
+        collect($migrations)->each(fn ($path) => $path->up());
     }
 
     public function registerLivewireComponents()
