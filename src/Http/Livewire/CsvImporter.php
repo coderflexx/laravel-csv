@@ -132,7 +132,7 @@ class CsvImporter extends Component
 
     protected function createNewImport()
     {
-        /** 
+        /**
          * @var \Coderflex\LaravelCsv\Tests\Models\User */
         $user = auth()->user();
 
