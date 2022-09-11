@@ -1,3 +1,0 @@
-<div>
-    {{-- Import CSV --}}
-</div>

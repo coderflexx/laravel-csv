@@ -80,7 +80,7 @@ class CsvImporter extends Component
     public function render()
     {
         return view(
-            csv_view_path('import-csv')
+            csv_view_path('csv-importer')
         );
     }
 
