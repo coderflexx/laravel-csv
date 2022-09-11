@@ -3,6 +3,7 @@
 namespace Coderflex\LaravelCsv\Http\Livewire;
 
 use Coderflex\LaravelCsv\Concerns;
+use function Coderflex\LaravelCsv\csv_view_path;
 use Coderflex\LaravelCsv\Jobs\ImportCsv;
 use Coderflex\LaravelCsv\Utilities\ChunkIterator;
 use Illuminate\Support\Facades\Bus;
@@ -10,7 +11,6 @@ use Illuminate\Support\MessageBag;
 use Illuminate\Validation\Validator;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use function Coderflex\LaravelCsv\csv_view_path;
 
 class CsvImporter extends Component
 {

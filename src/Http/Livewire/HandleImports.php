@@ -2,9 +2,9 @@
 
 namespace Coderflex\LaravelCsv\Http\Livewire;
 
+use function Coderflex\LaravelCsv\csv_view_path;
 use Coderflex\LaravelCsv\Models\Import;
 use Livewire\Component;
-use function Coderflex\LaravelCsv\csv_view_path;
 
 class HandleImports extends Component
 {
