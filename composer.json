@@ -37,6 +37,9 @@
         "phpunit/phpunit": "^9.5"
     },
     "autoload": {
+        "files": [
+            "src/helpers.php"
+        ],
         "psr-4": {
             "Coderflex\\LaravelCsv\\": "src",
             "Coderflex\\LaravelCsv\\Database\\Factories\\": "database/factories"

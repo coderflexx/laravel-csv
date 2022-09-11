@@ -4,6 +4,7 @@ namespace Coderflex\LaravelCsv\Http\Livewire;
 
 use Coderflex\LaravelCsv\Models\Import;
 use Livewire\Component;
+use function Coderflex\LaravelCsv\csv_view_path;
 
 class HandleImports extends Component
 {
@@ -30,6 +31,8 @@ class HandleImports extends Component
 
     public function render()
     {
-        return view('laravel-csv::livewire.handle-imports');
+        return view(
+            csv_view_path('handle-imports')
+        );
     }
 }

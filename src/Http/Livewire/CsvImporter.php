@@ -10,6 +10,7 @@ use Illuminate\Support\MessageBag;
 use Illuminate\Validation\Validator;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use function Coderflex\LaravelCsv\csv_view_path;
 
 class CsvImporter extends Component
 {
@@ -78,7 +79,9 @@ class CsvImporter extends Component
 
     public function render()
     {
-        return view('laravel-csv::livewire.import-csv');
+        return view(
+            csv_view_path('import-csv')
+        );
     }
 
     protected function validationAttributes()
