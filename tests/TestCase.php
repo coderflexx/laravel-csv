@@ -28,8 +28,8 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            LaravelCsvServiceProvider::class,
             LivewireServiceProvider::class,
+            LaravelCsvServiceProvider::class,
         ];
     }
 
@@ -47,9 +47,11 @@ class TestCase extends Orchestra
         collect($migrations)->each(fn ($path) => $path->up());
     }
 
-    public function registerLivewireComponents()
+    private function registerLivewireComponents():self
     {
-        Livewire::component(CsvImporter::class, 'csv-importer');
-        Livewire::component(HandleImports::class, 'handle-imports');
+        Livewire::component('csv-importer', CsvImporter::class);
+        Livewire::component('handle-imports', HandleImports::class);
+
+        return $this;
     }
 }
