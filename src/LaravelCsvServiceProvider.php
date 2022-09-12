@@ -37,7 +37,7 @@ class LaravelCsvServiceProvider extends PackageServiceProvider
 
     /**
      * Configure Laravel CSV Blade components
-     * 
+     *
      * @return void
      */
     protected function configureComponents(): void
@@ -49,7 +49,7 @@ class LaravelCsvServiceProvider extends PackageServiceProvider
 
     /**
      * Register livewire components
-     * 
+     *
      * @return void
      */
     protected function registerLivewireComponents(): void
@@ -60,8 +60,8 @@ class LaravelCsvServiceProvider extends PackageServiceProvider
 
     /**
      * Register given component.
-     * 
-     * @param string $component
+     *
+     * @param  string  $component
      * @return void
      */
     protected function registerComponent(string $component): void
