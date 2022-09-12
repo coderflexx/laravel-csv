@@ -299,7 +299,7 @@ it('toogles import button', function () {
     $model = Customer::class;
 
     livewire(CsvImporter::class, [
-        'model' => $model
+        'model' => $model,
     ])
     ->emit('toogle')
     ->assertSet('open', true)
