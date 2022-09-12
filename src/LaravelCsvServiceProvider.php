@@ -5,6 +5,8 @@ namespace Coderflex\LaravelCsv;
 use Coderflex\LaravelCsv\Commands\LaravelCsvCommand;
 use Coderflex\LaravelCsv\Http\Livewire\CsvImporter;
 use Coderflex\LaravelCsv\Http\Livewire\HandleImports;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\View\Compilers\BladeCompiler;
 use Livewire\Livewire;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -29,11 +31,41 @@ class LaravelCsvServiceProvider extends PackageServiceProvider
     public function bootingPackage()
     {
         $this->registerLivewireComponents();
+
+        $this->configureComponents();
     }
 
-    private function registerLivewireComponents()
+    /**
+     * Configure Laravel CSV Blade components
+     * 
+     * @return void
+     */
+    protected function configureComponents(): void
+    {
+        $this->callAfterResolving(BladeCompiler::class, function () {
+            $this->registerComponent('button');
+        });
+    }
+
+    /**
+     * Register livewire components
+     * 
+     * @return void
+     */
+    protected function registerLivewireComponents(): void
     {
         Livewire::component('csv-importer', CsvImporter::class);
         Livewire::component('handle-imports', HandleImports::class);
+    }
+
+    /**
+     * Register given component.
+     * 
+     * @param string $component
+     * @return void
+     */
+    protected function registerComponent(string $component): void
+    {
+        Blade::component('laravel-csv::components.'.$component, 'csv-'.$component);
     }
 }
