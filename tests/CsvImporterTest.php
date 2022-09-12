@@ -292,3 +292,16 @@ it('creates customers records on top of csv file', function () {
     $this->assertEquals(Customer::count(), 1000);
     $this->assertEquals($import->first()->processed_rows, 1000);
 });
+
+it('toogles import button', function () {
+    $this->actingAs(User::factory()->create());
+
+    $model = Customer::class;
+
+    livewire(CsvImporter::class, [
+        'model' => $model
+    ])
+    ->emit('toogle')
+    ->assertSet('open', true)
+    ->assertHasNoErrors();
+});

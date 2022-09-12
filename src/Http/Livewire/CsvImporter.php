@@ -21,6 +21,9 @@ class CsvImporter extends Component
     /** @var string */
     public $model;
 
+    /** @var bool */
+    public bool $open = false;
+
     /** @var object */
     public $file;
 
@@ -43,6 +46,11 @@ class CsvImporter extends Component
     protected $exceptions = [
         'mode', 'columnsToMap', 'open',
         'columnLabels', 'requiredColumns',
+    ];
+
+    /** @var array */
+    protected $listeners = [
+        'toogle',
     ];
 
     public function mount()
@@ -75,6 +83,11 @@ class CsvImporter extends Component
         $this->resetExcept($this->exceptions);
 
         $this->emitTo('csv-imports', 'imports.refresh');
+    }
+
+    public function toogle()
+    {
+        $this->open = ! $this->open;
     }
 
     public function render()
