@@ -22,7 +22,7 @@ class CsvImporter extends Component
     public $model;
 
     /** @var bool */
-    public bool $open = false;
+    public bool $open = true;
 
     /** @var object */
     public $file;
@@ -50,7 +50,7 @@ class CsvImporter extends Component
 
     /** @var array */
     protected $listeners = [
-        'toogle',
+        'toggle',
     ];
 
     public function mount()
@@ -85,7 +85,7 @@ class CsvImporter extends Component
         $this->emitTo('csv-imports', 'imports.refresh');
     }
 
-    public function toogle()
+    public function toggle()
     {
         $this->open = ! $this->open;
     }

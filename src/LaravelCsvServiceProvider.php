@@ -23,8 +23,9 @@ class LaravelCsvServiceProvider extends PackageServiceProvider
         $package
             ->name('laravel-csv')
             ->hasConfigFile('laravel_csv')
+            ->hasAssets()
             ->hasViews('laravel-csv')
-            ->hasMigration('create_laravel_csv_table')
+            ->hasMigration('create_csv_imports_table')
             ->hasCommand(LaravelCsvCommand::class);
     }
 
@@ -33,6 +34,8 @@ class LaravelCsvServiceProvider extends PackageServiceProvider
         $this->registerLivewireComponents();
 
         $this->configureComponents();
+
+        $this->registerBladeDirectives();
     }
 
     /**
@@ -68,4 +71,16 @@ class LaravelCsvServiceProvider extends PackageServiceProvider
     {
         Blade::component('laravel-csv::components.'.$component, 'csv-'.$component);
     }
+
+    /**
+     * Register laravel CSV blade directives
+     * 
+     * @return void
+     */
+    protected function registerBladeDirectives()
+    {
+        Blade::directive('csvStyles', [LaravelCsvDirectives::class, 'csvStyles']);
+        Blade::directive('csvScripts', [LaravelCsvDirectives::class, 'csvScripts']);
+    }
+
 }
