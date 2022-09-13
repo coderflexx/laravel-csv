@@ -47,7 +47,7 @@ class TestCase extends Orchestra
         collect($migrations)->each(fn ($path) => $path->up());
     }
 
-    private function registerLivewireComponents():self
+    private function registerLivewireComponents(): self
     {
         Livewire::component('csv-importer', CsvImporter::class);
         Livewire::component('handle-imports', HandleImports::class);
