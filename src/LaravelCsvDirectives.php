@@ -13,14 +13,14 @@ class LaravelCsvDirectives
 
     public static function csvScripts()
     {
-        return <<<HTML
+        return <<<'HTML'
             <script src="{{ asset('vendor/csv/js/app.js') }}"></script>
         HTML;
     }
 
     protected static function getTailwindStyle()
     {
-        return <<<HTML
+        return <<<'HTML'
                 <link href="{{ asset('vendor/csv/css/tailwind.css') }}" rel="stylesheet"></link>
         HTML;
     }

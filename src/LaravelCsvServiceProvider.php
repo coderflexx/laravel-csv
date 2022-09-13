@@ -74,7 +74,7 @@ class LaravelCsvServiceProvider extends PackageServiceProvider
 
     /**
      * Register laravel CSV blade directives
-     * 
+     *
      * @return void
      */
     protected function registerBladeDirectives()
@@ -82,5 +82,4 @@ class LaravelCsvServiceProvider extends PackageServiceProvider
         Blade::directive('csvStyles', [LaravelCsvDirectives::class, 'csvStyles']);
         Blade::directive('csvScripts', [LaravelCsvDirectives::class, 'csvScripts']);
     }
-
 }
