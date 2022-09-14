@@ -1,3 +1,0 @@
-<div>
-    {{-- Handle Imports --}}
-</div>

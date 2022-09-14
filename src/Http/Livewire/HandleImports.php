@@ -9,12 +9,17 @@ use Livewire\Component;
 class HandleImports extends Component
 {
     /** @var string */
-    public $model;
+    protected $model;
 
     /** @var array */
     protected $listeners = [
         'imports.refresh' => '$refresh',
     ];
+
+    public function mount(string $model)
+    {
+        $this->model = $model;
+    }
 
     public function getImportsProperty()
     {

@@ -1,1 +1,4 @@
-{}
+{
+    "/resources/dist/js/app.js": "/resources/dist/js/app.js",
+    "/resources/dist/css/tailwind.css": "/resources/dist/css/tailwind.css"
+}

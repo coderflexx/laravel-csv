@@ -22,7 +22,7 @@ class CsvImporter extends Component
     public $model;
 
     /** @var bool */
-    public bool $open = true;
+    public bool $open = false;
 
     /** @var object */
     public $file;

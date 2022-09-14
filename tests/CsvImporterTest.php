@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Storage;
 use function Pest\Livewire\livewire;
 
+beforeEach(fn () => $this->actingAs(User::factory()->create()));
+
 it('renders import CSV component', function () {
     livewire(CsvImporter::class)
         ->assertSuccessful();
@@ -224,7 +226,6 @@ it('throws validation errors, if the columns does not match', function () {
 });
 
 it('ensures the imports is batched', function () {
-    $this->actingAs(User::factory()->create());
 
     Storage::fake('documents');
     Bus::fake();
@@ -261,7 +262,6 @@ it('ensures the imports is batched', function () {
 });
 
 it('creates customers records on top of csv file', function () {
-    $this->actingAs(User::factory()->create());
 
     $file = UploadedFile::fake()
         ->createWithContent(
@@ -293,15 +293,14 @@ it('creates customers records on top of csv file', function () {
     $this->assertEquals($import->first()->processed_rows, 1000);
 });
 
-it('toogles import button', function () {
-    $this->actingAs(User::factory()->create());
+it('toggles import button', function () {
 
     $model = Customer::class;
 
     livewire(CsvImporter::class, [
         'model' => $model,
     ])
-    ->emit('toogle')
+    ->emit('toggle')
     ->assertSet('open', true)
     ->assertHasNoErrors();
 });
