@@ -226,7 +226,6 @@ it('throws validation errors, if the columns does not match', function () {
 });
 
 it('ensures the imports is batched', function () {
-
     Storage::fake('documents');
     Bus::fake();
 
@@ -262,7 +261,6 @@ it('ensures the imports is batched', function () {
 });
 
 it('creates customers records on top of csv file', function () {
-
     $file = UploadedFile::fake()
         ->createWithContent(
             'customers.csv',
@@ -294,7 +292,6 @@ it('creates customers records on top of csv file', function () {
 });
 
 it('toggles import button', function () {
-
     $model = Customer::class;
 
     livewire(CsvImporter::class, [
