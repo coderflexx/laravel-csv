@@ -22,9 +22,14 @@ trait ImportScope
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeNotCompleted(Builder $builder): Builder
+    public function scopeUnCompleted(Builder $builder): Builder
     {
         return $builder->whereNull('completed_at');
+    }
+
+    public function percentageComplete()
+    {
+        return floor(($this->processed_rows / $this->total_rows) * 100);
     }
 
     /**
@@ -41,10 +46,10 @@ trait ImportScope
     /**
      * Fetch imports on the user id
      *
-     * @param  \Illuminate\Foundation\Auth\User  $user
+     * @param  int  $user
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeForUser(Builder $builder, User $user): Builder
+    public function scopeForUser(Builder $builder, int $user): Builder
     {
         return $builder->where('user_id', $user);
     }

@@ -28,9 +28,9 @@ class HandleImports extends Component
 
         return Import::query()
                     ->forModel($this->model)
-                    ->forUser($user)
+                    ->forUser($user->id)
                     ->oldest()
-                    ->notCompleted()
+                    ->unCompleted()
                     ->get();
     }
 
