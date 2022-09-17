@@ -30,9 +30,9 @@ trait ImportScope
     /**
      * Get the percentage of the model completion
      *
-     * @return int
+     * @return int|float
      */
-    public function percentageComplete(): int
+    public function percentageComplete(): int|float
     {
         return floor(($this->processed_rows / $this->total_rows) * 100);
     }
