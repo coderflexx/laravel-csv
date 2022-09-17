@@ -29,7 +29,7 @@ trait ImportScope
 
     /**
      * Get the percentage of the model completion
-     * 
+     *
      * @return int
      */
     public function percentageComplete(): int
