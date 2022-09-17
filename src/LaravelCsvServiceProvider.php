@@ -40,7 +40,7 @@ class LaravelCsvServiceProvider extends PackageServiceProvider
 
     public function registeringPackage()
     {
-        $this->app->bind('laravel-csv', fn() => new LaravelCsvManager);
+        $this->app->bind('laravel-csv', fn () => new LaravelCsvManager);
     }
 
     /**

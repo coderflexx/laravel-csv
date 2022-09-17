@@ -50,7 +50,6 @@ trait HasCsvProperties
             $fileRowCount = $this->csvRecords->count();
 
             return [$fileHeaders, $fileRowCount];
-            
         } catch (\League\Csv\SyntaxError $exception) {
             Log::warning($exception->getMessage());
 
