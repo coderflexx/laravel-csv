@@ -2,7 +2,6 @@
 
 namespace Coderflex\LaravelCsv;
 
-use Coderflex\LaravelCsv\Commands\LaravelCsvCommand;
 use Coderflex\LaravelCsv\Http\Livewire\CsvImporter;
 use Coderflex\LaravelCsv\Http\Livewire\HandleImports;
 use Illuminate\Support\Facades\Blade;
@@ -25,8 +24,7 @@ class LaravelCsvServiceProvider extends PackageServiceProvider
             ->hasConfigFile('laravel_csv')
             ->hasAssets()
             ->hasViews('laravel-csv')
-            ->hasMigration('create_csv_imports_table')
-            ->hasCommand(LaravelCsvCommand::class);
+            ->hasMigration('create_csv_imports_table');
     }
 
     public function bootingPackage()
