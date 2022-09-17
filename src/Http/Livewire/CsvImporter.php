@@ -148,7 +148,7 @@ class CsvImporter extends Component
         Bus::batch($jobs)
                     ->name('import-csv')
                     ->finally(
-                        fn () => $import->touch('compoleted_at')
+                        fn () => $import->touch('completed_at')
                     )->dispatch();
     }
 
