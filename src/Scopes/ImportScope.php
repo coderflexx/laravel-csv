@@ -27,7 +27,12 @@ trait ImportScope
         return $builder->whereNull('completed_at');
     }
 
-    public function percentageComplete()
+    /**
+     * Get the percentage of the model completion
+     * 
+     * @return int
+     */
+    public function percentageComplete(): int
     {
         return floor(($this->processed_rows / $this->total_rows) * 100);
     }
