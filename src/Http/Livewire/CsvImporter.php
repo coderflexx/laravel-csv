@@ -114,17 +114,20 @@ class CsvImporter extends Component
 
     protected function setCsvProperties()
     {
+        if (! $this->handleCsvProperties() instanceof MessageBag) {
+            return [
+                $this->fileHeaders,
+                $this->fileRowCount
+            ] = $this->handleCsvProperties();
+        }
+
         $this->withValidator(function (Validator $validator) {
             $validator->after(function ($validator) {
-                if ($this->handleCsvProperties() instanceof MessageBag) {
-                    $validator->errors()->merge(
-                        $this->handleCsvProperties()->getMessages()
-                    );
-                }
+                $validator->errors()->merge(
+                    $this->handleCsvProperties()->getMessages()
+                );
             });
         })->validate();
-
-        [$this->fileHeaders, $this->fileRowCount] = $this->handleCsvProperties();
     }
 
     protected function importCsv()

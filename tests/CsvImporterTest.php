@@ -53,7 +53,7 @@ it('throws a validation error if the csv file empty', function () {
     ])
         ->set('file', $file)
         ->assertSet('model', $model)
-        ->assertHasErrors(['file_error']);
+        ->assertHasErrors(['file']);
 });
 
 it('throws a validation error if the csv file has duplicate headers', function () {
@@ -70,7 +70,7 @@ it('throws a validation error if the csv file has duplicate headers', function (
     ])
         ->set('file', $file)
         ->assertSet('model', $model)
-        ->assertHasErrors(['file_error']);
+        ->assertHasErrors(['file']);
 });
 
 it('transfers columnsToMap into an associative array', function () {

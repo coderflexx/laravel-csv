@@ -54,8 +54,8 @@ trait HasCsvProperties
             Log::warning($exception->getMessage());
 
             return $this->addError(
-                'file_error',
-                __('Your CSV file has error/errors, or is empty. Please check, and try again')
+                'file',
+                __('The file has error/errors, Please check, and try again')
             );
         }
     }
