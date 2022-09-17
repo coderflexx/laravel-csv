@@ -7,11 +7,11 @@ class LaravelCsvManager
     /**
      * Get the given size and formated it.
      *
-     * @param  int  $number
+     * @param  int  $size
      * @param  int  $precision
-     * @return string
+     * @return string|int
      */
-    public function formatFileSize(int $size, int $precision = 2): string
+    public function formatFileSize(int $size, int $precision = 2): string|int
     {
         if ($size <= 0) {
             return $size;
