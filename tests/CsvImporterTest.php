@@ -12,11 +12,6 @@ use function Pest\Livewire\livewire;
 
 beforeEach(fn () => $this->actingAs(User::factory()->create()));
 
-it('renders import CSV component', function () {
-    livewire(CsvImporter::class)
-        ->assertSuccessful();
-});
-
 it('renders import CSV component with model', function () {
     $model = Customer::class;
 

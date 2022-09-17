@@ -38,6 +38,11 @@ class LaravelCsvServiceProvider extends PackageServiceProvider
         $this->registerBladeDirectives();
     }
 
+    public function registeringPackage()
+    {
+        $this->app->bind('laravel-csv', fn() => new LaravelCsvManager);
+    }
+
     /**
      * Configure Laravel CSV Blade components
      *

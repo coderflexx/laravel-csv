@@ -9,7 +9,7 @@ use Livewire\Component;
 class HandleImports extends Component
 {
     /** @var string */
-    protected $model;
+    public $model;
 
     /** @var array */
     protected $listeners = [

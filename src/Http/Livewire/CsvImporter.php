@@ -3,6 +3,8 @@
 namespace Coderflex\LaravelCsv\Http\Livewire;
 
 use Coderflex\LaravelCsv\Concerns;
+use Coderflex\LaravelCsv\Facades\LaravelCsv;
+
 use function Coderflex\LaravelCsv\csv_view_path;
 use Coderflex\LaravelCsv\Jobs\ImportCsv;
 use Coderflex\LaravelCsv\Utilities\ChunkIterator;
@@ -92,9 +94,11 @@ class CsvImporter extends Component
 
     public function render()
     {
-        return view(
-            csv_view_path('csv-importer')
-        );
+        return view(csv_view_path('csv-importer'), [
+            'fileSize' => LaravelCsv::formatFileSize(
+                    config('laravel_csv.file_upload_size', 20000)
+            ),
+        ]);
     }
 
     protected function validationAttributes()
@@ -105,7 +109,7 @@ class CsvImporter extends Component
     protected function rules()
     {
         return [
-            'file' => 'required|file|mimes:csv,txt',
+            'file' => 'required|file|mimes:csv,txt|max:'. config('laravel_csv.file_upload_size', '20000'),
         ] + $this->requiredColumns;
     }
 

@@ -9,7 +9,7 @@ if (! function_exists('Coderflex\LaravelCsv\csv_view_path')) {
      * @param  string|null  $view
      * @return string
      */
-    function csv_view_path($view)
+    function csv_view_path($view): string
     {
         return 'laravel-csv::livewire.'.config('laravel_csv.layout').'.'.$view;
     }
