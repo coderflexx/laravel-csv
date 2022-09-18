@@ -4,21 +4,38 @@ namespace Coderflex\LaravelCsv;
 
 class LaravelCsvDirectives
 {
-    public static function csvStyles()
+    /**
+     * Get CSV Styles
+     * 
+     * @return string
+     */
+    public static function csvStyles():string|null
     {
         if (config('laravel_csv.layout') == 'tailwindcss') {
             return self::getTailwindStyle();
         }
+
+        return self::getTailwindStyle();
     }
 
-    public static function csvScripts()
+    /**
+     * Get CSV Scripts
+     * 
+     * @return string
+     */
+    public static function csvScripts(): string
     {
         return <<<'HTML'
             <script src="{{ asset('vendor/csv/js/app.js') }}"></script>
         HTML;
     }
 
-    protected static function getTailwindStyle()
+    /**
+     * Get Tailwind Style Path
+     * 
+     * @return string
+     */
+    protected static function getTailwindStyle(): string
     {
         return <<<'HTML'
                 <link href="{{ asset('vendor/csv/css/tailwind.css') }}" rel="stylesheet"></link>

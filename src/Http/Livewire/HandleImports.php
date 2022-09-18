@@ -4,6 +4,9 @@ namespace Coderflex\LaravelCsv\Http\Livewire;
 
 use function Coderflex\LaravelCsv\csv_view_path;
 use Coderflex\LaravelCsv\Models\Import;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\View\Factory;
 use Livewire\Component;
 
 class HandleImports extends Component
@@ -16,12 +19,12 @@ class HandleImports extends Component
         'imports.refresh' => '$refresh',
     ];
 
-    public function mount(string $model)
+    public function mount(string $model): void
     {
         $this->model = $model;
     }
 
-    public function getImportsProperty()
+    public function getImportsProperty(): Collection
     {
         /** @var \Illuminate\Foundation\Auth\User */
         $user = auth()->user();
@@ -34,7 +37,7 @@ class HandleImports extends Component
                     ->get();
     }
 
-    public function render()
+    public function render(): View|Factory
     {
         return view(
             csv_view_path('handle-imports')

@@ -2,6 +2,7 @@
 
 namespace Coderflex\LaravelCsv\Utilities;
 
+use Generator;
 use Iterator;
 
 /**
@@ -35,8 +36,10 @@ class ChunkIterator
 
     /**
      * Chunk the given data
+     * 
+     * @return Generator
      */
-    public function get()
+    public function get(): Generator
     {
         $chunk = [];
 
