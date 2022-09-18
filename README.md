@@ -3,10 +3,10 @@
     <br><br>
 </p>
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/coderflexx/laravel-csv.svg?style=flat-square)](https://packagist.org/packages/coderflexx/laravel-csv)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/coderflexx/laravel-csv.svg?style=flat-square)](https://packagist.org/packages/coderflex/laravel-csv)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/coderflexx/laravel-csv/run-tests?label=tests)](https://github.com/coderflexx/laravel-csv/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/coderflexx/laravel-csv/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/coderflexx/laravel-csv/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/coderflexx/laravel-csv.svg?style=flat-square)](https://packagist.org/packages/coderflexx/laravel-csv)
+[![Total Downloads](https://img.shields.io/packagist/dt/coderflexx/laravel-csv.svg?style=flat-square)](https://packagist.org/packages/coderflex/laravel-csv)
 
 
 - [Introduction](#introduction)
@@ -66,7 +66,7 @@ return [
     | This package came with multiple layouts to serve your need, and
     | currently it supports "tailwindcss" and "bootstrap", by default
     | the layout is tailwind.
-    | currently support: "tailwindcss", "bootstrap"
+    | currently support: "tailwindcss"
     |
     */
     'layout' => 'tailwindcss',
@@ -124,13 +124,13 @@ Using this package, is really simple, all what you need to do is implementing th
 | columns-label  |`array` | Accept Column Label of the required columns for the message  |
 
 ### Button Component
-The Component using `alpinejs` under the hood, If you want to use add the import button, you may use `x-csv-button` component.
+The Component using `alpinejs` under the hood, If you want to use the import button, you may use `x-csv-button` component.
 
 ```blade
 <x-csv-button>Import</x-csv-button>
 ```
 
-If you want to style it, you can use the `class` attribute, or any attribute you want really
+If you want to style it, you may use the `class` attribute, or any attribute you want.
 
 ```blade
 <x-csv-button 
@@ -141,7 +141,7 @@ If you want to style it, you can use the `class` attribute, or any attribute you
 </x-csv-button>
 ```
 ### In TALL stack project
-If you are using this package in a [TALL Stack]() project, (Tailwindcss, Alpinejs, Laravel, Livewire) All what you need to do is publish the vendor views
+If you are using this package in a [TALL Stack](https://tallstack.dev/) project, (Tailwindcss, Alpinejs, Laravel, Livewire) All what you need to do is publish the vendor views
 
 ```bash
 php artisan vendor:publish --tag="csv-views"
