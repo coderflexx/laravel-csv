@@ -36,7 +36,7 @@ class ChunkIterator
 
     /**
      * Chunk the given data
-     * 
+     *
      * @return Generator
      */
     public function get(): Generator

@@ -4,9 +4,9 @@ namespace Coderflex\LaravelCsv\Http\Livewire;
 
 use function Coderflex\LaravelCsv\csv_view_path;
 use Coderflex\LaravelCsv\Models\Import;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 class HandleImports extends Component

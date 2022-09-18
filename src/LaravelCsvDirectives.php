@@ -6,10 +6,10 @@ class LaravelCsvDirectives
 {
     /**
      * Get CSV Styles
-     * 
+     *
      * @return string
      */
-    public static function csvStyles():string|null
+    public static function csvStyles(): string|null
     {
         if (config('laravel_csv.layout') == 'tailwindcss') {
             return self::getTailwindStyle();
@@ -20,7 +20,7 @@ class LaravelCsvDirectives
 
     /**
      * Get CSV Scripts
-     * 
+     *
      * @return string
      */
     public static function csvScripts(): string
@@ -32,7 +32,7 @@ class LaravelCsvDirectives
 
     /**
      * Get Tailwind Style Path
-     * 
+     *
      * @return string
      */
     protected static function getTailwindStyle(): string
