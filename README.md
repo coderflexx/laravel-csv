@@ -204,7 +204,7 @@ Please see [CONTRIBUTING](https://github.com/ousid/.github/blob/main/CONTRIBUTIN
 Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
 
 ## Inspiration
-This Package Was Inspired by [codecourse](https://codecourse.com), and if you learn how this package created, make sure to take a look at this [video series](https://codecourse.com/subjects/laravel-livewire)
+This Package Was Inspired by [codecourse](https://codecourse.com) video series, and if you want to learn how this package was created, make sure to take a look at this [video series](https://codecourse.com/subjects/laravel-livewire)
 
 ## Credits
 
