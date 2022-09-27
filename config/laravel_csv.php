@@ -1,5 +1,3 @@
-<?php
-
 return [
 
     /*
@@ -7,10 +5,8 @@ return [
     | Default Layout
     |--------------------------------------------------------------------------
     |
-    | This package came with multiple layouts to serve your need, and
-    | currently it supports "tailwindcss" and "bootstrap", by default
-    | the layout is tailwind.
-    | currently support: "tailwindcss"
+    | This package plans on supporting multiple CSS frameworks. 
+    | Currently, 'tailwindcss' is the default and only supported framework.
     |
     */
     'layout' => 'tailwindcss',
@@ -20,11 +16,9 @@ return [
     | Max Upload File Size
     |--------------------------------------------------------------------------
     |
-    | This package came with file validation for uploaded files,
-    | and by default the file should not be greater than 20MB. If
-    | you wish to increase/decrease this value, you may change the
-    | value below.
-    | Note that the value is defined by "KB".
+    | The default maximumum file size that can be imported by this
+    | package is 20MB. If you wish to increase/decrease this value, 
+    | change the value in KB below.
     |
     */
     'file_upload_size' => 20000,
