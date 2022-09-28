@@ -11,6 +11,10 @@ if (! function_exists('Coderflex\LaravelCsv\csv_view_path')) {
      */
     function csv_view_path(string|null $view): string
     {
+        if(file_exists(__DIR__ . '/../../../../resources/views/vendor/csv/livewire/'.config('laravel_csv.layout')))
+        {
+            return 'vendor/csv/livewire/.'.config('laravel_csv.layout').'.'.$view;
+        }
         return 'laravel-csv::livewire.'.config('laravel_csv.layout').'.'.$view;
     }
 }
