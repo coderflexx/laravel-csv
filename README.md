@@ -27,7 +27,7 @@
 - [License](#license)
 
 ## Introduction
-__Laravel CSV__ Package is a package created on top of Laravel [livewire](https://laravel-livewire.com) package, and it handles importing thousands of records without any issues.
+__Laravel CSV__ Package is a package created on top of Laravel [livewire](https://laravel-livewire.com) for easily handling imports with a simple API.
 
 ## Installation
 
@@ -39,20 +39,20 @@ composer require coderflex/laravel-csv
 
 ## Configuration
 
-You can publish and run the migrations with:
+Publish and run the migrations with:
 
 ```bash
 php artisan vendor:publish --tag="csv-migrations"
 php artisan migrate
 ```
 
-You can publish the config file with:
+Publish the config file with:
 
 ```bash
 php artisan vendor:publish --tag="csv-config"
 ```
 
-This is the contents of the published config file:
+The following is the contents of the published config file:
 
 ```php
 
@@ -63,10 +63,8 @@ return [
     | Default Layout
     |--------------------------------------------------------------------------
     |
-    | This package came with multiple layouts to serve your need, and
-    | currently it supports "tailwindcss" and "bootstrap", by default
-    | the layout is tailwind.
-    | currently support: "tailwindcss"
+    | This package plans on supporting multiple CSS frameworks. 
+    | Currently, 'tailwindcss' is the default and only supported framework.
     |
     */
     'layout' => 'tailwindcss',
@@ -76,20 +74,18 @@ return [
     | Max Upload File Size
     |--------------------------------------------------------------------------
     |
-    | This package came with file validation for uploaded files,
-    | and by default the file should not be greater than 20MB. If
-    | you wish to increase/decrease this value, you may change the
-    | value below.
-    | Note that the value is defined by "KB".
+    | The default maximumum file size that can be imported by this
+    | package is 20MB. If you wish to increase/decrease this value, 
+    | change the value in KB below.
     |
     */
     'file_upload_size' => 20000,
 ];
 ```
 
-The `layout` option is for choosing which CSS Framework you are using, currently supports only `tailwindcss`, and we're working on other CSS frameworks to implement in the future.
+The `layout` option is for choosing which CSS framework you are using and currently supports only `tailwindcss`. We are working on other CSS frameworks to implement in the future.
 
-The `file_upload_size` is for validation rules, and it helps define the file size of the uploaded files, or. You can define this one from [livewire config](https://github.com/livewire/livewire/blob/master/config/livewire.php#L100) file.
+The `file_upload_size` is for validation rules, and it defines the maximum file size of uploaded files. You may also define this value from the [livewire config](https://github.com/livewire/livewire/blob/master/config/livewire.php#L100) file.
 
 Optionally, you can publish the views using
 
@@ -102,7 +98,7 @@ php artisan vendor:publish --tag="csv-views"
 ## Usage
 
 ### CSV Importer Component
-Using this package, is really simple, all what you need to do is implementing the component inside your desired file.
+Using this package is a breeze. To implmenent the importer in your project, simply include the following component inside a Blade view.
 
 ```blade
     <livewire:csv-importer :model="App\Models\YourModel::class"
@@ -118,19 +114,19 @@ Using this package, is really simple, all what you need to do is implementing th
 
 | Props  | Type  |  Description  |
 |---|---|---|
-|  model |`string` | Fully qualified name of the model wants to import to  |
-|  columns-to-map |`array` | Accept Columns need to be imported in the db  |
-|  required-columns |`array` | Accept Columns need to be required while importing  |
-| columns-label  |`array` | Accept Column Label of the required columns for the message  |
+|  model |`string` | Fully qualified name of the model you wish to import to  |
+|  columns-to-map |`array` | Column names in the target database table |
+|  required-columns |`array` | Columns that are required by validation for import  |
+| columns-label  |`array` |  Display labels for the required columns  |
 
 ### Button Component
-The Component using `alpinejs` under the hood, If you want to use the import button, you may use `x-csv-button` component.
+The Component uses `alpinejs` under the hood. To display an import button, include the `x-csv-button` component.
 
 ```blade
 <x-csv-button>Import</x-csv-button>
 ```
 
-If you want to style it, you may use the `class` attribute, or any attribute you want.
+To style the button, use the `class` attribute with Tailwind utility classes.
 
 ```blade
 <x-csv-button 
@@ -141,18 +137,18 @@ If you want to style it, you may use the `class` attribute, or any attribute you
 </x-csv-button>
 ```
 ### In TALL stack project
-If you are using this package in a [TALL Stack](https://tallstack.dev/) project, (Tailwindcss, Alpinejs, Laravel, Livewire) All what you need to do is publish the vendor views
+If you are using this package in a [TALL Stack](https://tallstack.dev/) project, (Tailwindcss, Alpinejs, Laravel, Livewire) publish the vendor views to include Laravel-CSV in your project.
 
 ```bash
 php artisan vendor:publish --tag="csv-views"
 ```
-Then compile your assets, to add the additional classes, came with the component.
+Then compile your assets.
 ```bash
 npm run dev
 ```
 
 ### In none TALL Stack project
-If you are not using the TALL Stack by default, you may use the `csv directives` to add the necessary styles/scripts
+If you are not using the TALL Stack, use the `csv directives` to add the necessary styles/scripts.
 
 ```blade
 <html>
@@ -170,19 +166,19 @@ If you are not using the TALL Stack by default, you may use the `csv directives`
 
 ```
 ### Using Queues
-This package is using [queues](https://laravel.com/docs/9.x/queues#main-content), under the hood with [PHP Generators](https://www.php.net/manual/en/language.generators.overview.php), to make it works fast and efficient.
+This package uses [queues](https://laravel.com/docs/9.x/queues#main-content) under the hood with [PHP Generators](https://www.php.net/manual/en/language.generators.overview.php) to make it fast and efficient.
 
-You need first to create the `batches table`
+Create the `batches table` by running
 ```bash
 php artisan queue:batches-table
 ```
-Then run the migration
+Then, run the migration.
 ```
 php artisan migrate
 ```
 
-After that, you need to set up the queues' configuration.
-You may head into [Laravel Queues Documentation](https://laravel.com/docs/9.x/queues#main-content) to learn more.
+After that, set up the queues' configuration.
+Head to [Laravel Queues Documentation](https://laravel.com/docs/9.x/queues#main-content) to learn more.
 
 
 ## Testing
@@ -204,7 +200,7 @@ Please see [CONTRIBUTING](https://github.com/ousid/.github/blob/main/CONTRIBUTIN
 Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
 
 ## Inspiration
-This Package Was Inspired by [codecourse](https://codecourse.com) video series, and if you want to learn how this package was created, make sure to take a look at this [video series](https://codecourse.com/subjects/laravel-livewire)
+This Package Was Inspired by [codecourse](https://codecourse.com) video series. If you want to learn how this package was created, make sure to take a look at this [video series](https://codecourse.com/subjects/laravel-livewire)
 
 ## Credits
 
