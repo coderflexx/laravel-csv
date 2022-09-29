@@ -23,6 +23,8 @@ it('renders import CSV component with model', function () {
 });
 
 it('renders import CSV component with model and file', function () {
+    Storage::fake('documents');
+    
     $path = __DIR__ . '/stubs/customers.csv';
     $model = Customer::class;
 
