@@ -23,12 +23,15 @@ it('renders import CSV component with model', function () {
 });
 
 it('renders import CSV component with model and file', function () {
+    $path = __DIR__ . '/stubs/customers.csv';
     $model = Customer::class;
+
+    chmod($path, 0755);
 
     $file = UploadedFile::fake()
         ->createWithContent(
             'customers.csv',
-            file_get_contents('stubs/customers.csv', true)
+            $path
         );
 
     livewire(CsvImporter::class, [
