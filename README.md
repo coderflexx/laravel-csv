@@ -3,10 +3,10 @@
     <br><br>
 </p>
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/coderflexx/laravel-csv.svg?style=flat-square)](https://packagist.org/packages/coderflex/laravel-csv)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/coderflex/laravel-csv.svg?style=flat-square)](https://packagist.org/packages/coderflex/laravel-csv)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/coderflexx/laravel-csv/run-tests?label=tests)](https://github.com/coderflexx/laravel-csv/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/coderflexx/laravel-csv/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/coderflexx/laravel-csv/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/coderflexx/laravel-csv.svg?style=flat-square)](https://packagist.org/packages/coderflex/laravel-csv)
+[![Total Downloads](https://img.shields.io/packagist/dt/coderflex/laravel-csv.svg?style=flat-square)](https://packagist.org/packages/coderflex/laravel-csv)
 
 
 - [Introduction](#introduction)
