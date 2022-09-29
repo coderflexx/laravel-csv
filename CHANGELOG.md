@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-csv` will be documented in this file.
 
+## v1.0.2 - 2022-09-29
+
+### What's Changed
+
+- Bug Fix: package installation failure by @askdkc in https://github.com/coderflexx/laravel-csv/pull/5
+
+**Full Changelog**: https://github.com/coderflexx/laravel-csv/compare/v1.0.1...v1.0.2
+
 ## v1.0.1 - 2022-09-28
 
 ### What's Changed
