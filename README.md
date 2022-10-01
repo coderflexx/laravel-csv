@@ -98,7 +98,7 @@ php artisan vendor:publish --tag="csv-views"
 ## Usage
 
 ### CSV Importer Component
-Using this package is a breeze. To implmenent the importer in your project, simply include the following component inside a Blade view.
+Using this package is a breeze. To implement the importer in your project, simply include the following component inside a Blade view.
 
 ```blade
     <livewire:csv-importer :model="App\Models\YourModel::class"
