@@ -23,7 +23,7 @@ it('renders import CSV component with model', function () {
 });
 
 it('renders import CSV component with model and file', function () {
-    Storage::fake('documents');
+    Storage::fake();
 
     $path = __DIR__.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'customers.csv';
     $model = Customer::class;
@@ -34,12 +34,13 @@ it('renders import CSV component with model and file', function () {
     livewire(CsvImporter::class, [
         'model' => $model,
     ])
-    ->set('file', $file)
+    ->set('file', $path)
     ->assertSet('model', $model)
     ->assertSuccessful();
 });
 
 it('throws a validation error if the csv file empty', function () {
+    Storage::fake();
     $model = Customer::class;
 
     $file = UploadedFile::fake()
@@ -51,14 +52,15 @@ it('throws a validation error if the csv file empty', function () {
     livewire(CsvImporter::class, [
         'model' => $model,
     ])
-        ->set('file', $file)
-        ->assertSet('model', $model)
-        ->assertHasErrors(['file']);
+    ->set('file', $file)
+    ->assertSet('model', $model)
+    ->assertHasErrors(['file']);
 });
 
 it('throws a validation error if the csv file has duplicate headers', function () {
-    $model = Customer::class;
+    Storage::fake();
 
+    $model = Customer::class;
     $file = UploadedFile::fake()
         ->createWithContent(
             'customers.csv',
@@ -68,9 +70,9 @@ it('throws a validation error if the csv file has duplicate headers', function (
     livewire(CsvImporter::class, [
         'model' => $model,
     ])
-        ->set('file', $file)
-        ->assertSet('model', $model)
-        ->assertHasErrors(['file']);
+    ->set('file', $file)
+    ->assertSet('model', $model)
+    ->assertHasErrors(['file']);
 });
 
 it('transfers columnsToMap into an associative array', function () {
