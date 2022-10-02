@@ -29,10 +29,7 @@ it('renders import CSV component with model and file', function () {
     $model = Customer::class;
 
     $file = UploadedFile::fake()
-        ->createWithContent(
-            'customers.csv',
-            $path
-        );
+        ->create('customers.csv', 10, 'csv');
 
     livewire(CsvImporter::class, [
         'model' => $model,
