@@ -23,24 +23,23 @@ it('renders import CSV component with model', function () {
 });
 
 it('renders import CSV component with model and file', function () {
-    Storage::fake();
-
-    $path = __DIR__.DIRECTORY_SEPARATOR.'stubs'.DIRECTORY_SEPARATOR.'customers.csv';
     $model = Customer::class;
 
     $file = UploadedFile::fake()
-        ->create('customers.csv', 10, 'csv');
+        ->createWithContent(
+            'customers.csv',
+            file_get_contents('stubs/customers.csv', true)
+        );
 
     livewire(CsvImporter::class, [
         'model' => $model,
     ])
-    ->set('file', $path)
+    ->set('file', $file)
     ->assertSet('model', $model)
     ->assertSuccessful();
 });
 
 it('throws a validation error if the csv file empty', function () {
-    Storage::fake();
     $model = Customer::class;
 
     $file = UploadedFile::fake()
@@ -52,15 +51,14 @@ it('throws a validation error if the csv file empty', function () {
     livewire(CsvImporter::class, [
         'model' => $model,
     ])
-    ->set('file', $file)
-    ->assertSet('model', $model)
-    ->assertHasErrors(['file']);
+        ->set('file', $file)
+        ->assertSet('model', $model)
+        ->assertHasErrors(['file']);
 });
 
 it('throws a validation error if the csv file has duplicate headers', function () {
-    Storage::fake();
-
     $model = Customer::class;
+
     $file = UploadedFile::fake()
         ->createWithContent(
             'customers.csv',
@@ -70,9 +68,9 @@ it('throws a validation error if the csv file has duplicate headers', function (
     livewire(CsvImporter::class, [
         'model' => $model,
     ])
-    ->set('file', $file)
-    ->assertSet('model', $model)
-    ->assertHasErrors(['file']);
+        ->set('file', $file)
+        ->assertSet('model', $model)
+        ->assertHasErrors(['file']);
 });
 
 it('transfers columnsToMap into an associative array', function () {
@@ -171,7 +169,7 @@ it('returns csv headers & row counts when upload a file', function () {
     ->assertSet('fileHeaders', [
         'id', 'first_name', 'last_name', 'email', 'company', 'vip', 'birthday', 'created_at', 'updated_at',
     ])
-    ->assertSet('fileRowCount', 1000);
+    ->assertSet('fileRowCount', 100);
 });
 
 it('throws validation errors, if the file extension does not match', function () {
@@ -250,7 +248,7 @@ it('ensures the imports is batched', function () {
 
     Bus::assertBatched(function (PendingBatch $batch) {
         return $batch->name == 'import-csv' &&
-               $batch->jobs->count() === 100;
+               $batch->jobs->count() === 10;
     });
 
     $this->assertEquals(Import::count(), 1);
@@ -284,8 +282,8 @@ it('creates customers records on top of csv file', function () {
 
     $this->assertEquals(Import::count(), 1);
     $this->assertEquals($import->count(), 1);
-    $this->assertEquals(Customer::count(), 1000);
-    $this->assertEquals($import->first()->processed_rows, 1000);
+    $this->assertEquals(Customer::count(), 100);
+    $this->assertEquals($import->first()->processed_rows, 100);
 });
 
 it('toggles import button', function () {
