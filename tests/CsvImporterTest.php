@@ -25,10 +25,8 @@ it('renders import CSV component with model', function () {
 it('renders import CSV component with model and file', function () {
     Storage::fake('documents');
 
-    $path = __DIR__.'/stubs/customers.csv';
+    $path = __DIR__. DIRECTORY_SEPARATOR . 'stubs'. DIRECTORY_SEPARATOR.'customers.csv';
     $model = Customer::class;
-
-    chmod($path, 0755);
 
     $file = UploadedFile::fake()
         ->createWithContent(
