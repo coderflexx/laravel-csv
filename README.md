@@ -90,7 +90,7 @@ The `file_upload_size` is for validation rules, and it defines the maximum file 
 Optionally, you can publish the views using
 
 ```bash
-php artisan vendor:publish --tag="csv-views"
+php artisan vendor:publish --tag="laravel-csv-views"
 ```
 
 > Before Using this command, please take a look at this [section](#in-tall-stack-project) below.
