@@ -2,6 +2,20 @@
 
 All notable changes to `laravel-csv` will be documented in this file.
 
+## v1.1.0 - 2022-10-12
+
+### What's Changed
+
+- Update README.md by @askdkc in https://github.com/coderflexx/laravel-csv/pull/9
+- Bump dependabot/fetch-metadata from 1.3.3 to 1.3.4 by @dependabot in https://github.com/coderflexx/laravel-csv/pull/10
+- Fixed vendor:publish tag name by @askdkc in https://github.com/coderflexx/laravel-csv/pull/11
+
+### New Contributors
+
+- @dependabot made their first contribution in https://github.com/coderflexx/laravel-csv/pull/10
+
+**Full Changelog**: https://github.com/coderflexx/laravel-csv/compare/v1.0.2...v1.1.0
+
 ## v1.0.2 - 2022-09-29
 
 ### What's Changed
