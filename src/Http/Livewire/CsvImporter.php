@@ -45,7 +45,7 @@ class CsvImporter extends Component
 
     /** @var array */
     protected $exceptions = [
-        'mode', 'columnsToMap', 'open',
+        'model', 'columnsToMap', 'open',
         'columnLabels', 'requiredColumns',
     ];
 
