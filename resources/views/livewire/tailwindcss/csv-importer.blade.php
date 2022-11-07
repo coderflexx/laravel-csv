@@ -31,7 +31,7 @@
                                         x-on:dragover.prevent="dropping = true"
                                         x-on:dragleave.prevent="dropping = false"
                                         x-on:drop.prevent="dropping = false"
-                                        x-on:drop.prevnet="handleDrop($event)"
+                                        x-on:drop.prevent="handleDrop($event)"
                                         x-data="{
                                             dropping: false,
 
