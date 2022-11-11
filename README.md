@@ -46,6 +46,8 @@ php artisan vendor:publish --tag="csv-migrations"
 php artisan migrate
 ```
 
+Add trait **HasCsvImports** to your User model.
+
 Publish the config file with:
 
 ```bash
