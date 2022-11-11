@@ -45,7 +45,7 @@ class CsvImporter extends Component
 
     /** @var array */
     protected $exceptions = [
-        'mode', 'columnsToMap', 'open',
+        'model', 'columnsToMap', 'open',
         'columnLabels', 'requiredColumns',
     ];
 
@@ -83,7 +83,7 @@ class CsvImporter extends Component
 
         $this->resetExcept($this->exceptions);
 
-        $this->emitTo('csv-imports', 'imports.refresh');
+        $this->emitTo('handle-imports', 'imports.refresh');
     }
 
     public function toggle()
