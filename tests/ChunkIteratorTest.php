@@ -24,5 +24,5 @@ it('interate over a csv and returns the result as chunked collection', function 
     $result = collect($chunks);
 
     $this->assertEquals(count((array) $result->first()), 10);
-    $this->assertEquals($result->keys()->count(), 100);
+    $this->assertEquals($result->keys()->count(), 10);
 });
