@@ -20,8 +20,6 @@ trait HasCsvProperties
 
     /**
      * Read CSV Property
-     *
-     * @return Reader
      */
     public function getReadCsvProperty(): Reader
     {
@@ -30,8 +28,6 @@ trait HasCsvProperties
 
     /**
      * Get CSV Records Property
-     *
-     * @return TabularDataReader
      */
     public function getCsvRecordsProperty(): TabularDataReader
     {
@@ -40,8 +36,6 @@ trait HasCsvProperties
 
     /**
      * Handle CSV Information properties from the given file
-     *
-     * @return array|\Illuminate\Support\MessageBag
      */
     public function handleCsvProperties(): array|MessageBag
     {

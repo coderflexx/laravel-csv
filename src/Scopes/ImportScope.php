@@ -9,8 +9,6 @@ trait ImportScope
 {
     /**
      * Completed Status Scope
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeCompleted(Builder $builder): Builder
     {
@@ -19,8 +17,6 @@ trait ImportScope
 
     /**
      * Not Completed Status Scope
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeUnCompleted(Builder $builder): Builder
     {
@@ -29,8 +25,6 @@ trait ImportScope
 
     /**
      * Get the percentage of the model completion
-     *
-     * @return int|float
      */
     public function percentageComplete(): int|float
     {
@@ -39,9 +33,6 @@ trait ImportScope
 
     /**
      * Fetch imports based on the given model
-     *
-     * @param  string  $model
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeForModel(Builder $builder, string $model): Builder
     {
@@ -50,9 +41,6 @@ trait ImportScope
 
     /**
      * Fetch imports on the user id
-     *
-     * @param  int  $user
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeForUser(Builder $builder, int $user): Builder
     {

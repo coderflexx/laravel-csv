@@ -22,25 +22,19 @@ class CsvImporter extends Component
     /** @var string */
     public $model;
 
-    /** @var bool */
     public bool $open = false;
 
     /** @var object */
     public $file;
 
-    /** @var array */
     public array $columnsToMap = [];
 
-    /** @var array */
     public array $requiredColumns = [];
 
-    /** @var array */
     public array $columnLabels = [];
 
-    /** @var array */
     public array $fileHeaders = [];
 
-    /** @var int */
     public int $fileRowCount = 0;
 
     /** @var array */
