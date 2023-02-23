@@ -20,8 +20,6 @@ class LaravelCsvDirectives
 
     /**
      * Get CSV Scripts
-     *
-     * @return string
      */
     public static function csvScripts(): string
     {
@@ -32,8 +30,6 @@ class LaravelCsvDirectives
 
     /**
      * Get Tailwind Style Path
-     *
-     * @return string
      */
     protected static function getTailwindStyle(): string
     {

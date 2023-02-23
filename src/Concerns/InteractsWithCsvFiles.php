@@ -8,9 +8,6 @@ trait InteractsWithCsvFiles
 {
     /**
      * Read CSV File.
-     *
-     * @param  string  $path
-     * @return Reader
      */
     protected function readCSV(string $path): Reader
     {

@@ -6,8 +6,6 @@ trait InteractsWithColumns
 {
     /**
      * Converts the columnsToMap property into an associative array.
-     *
-     * @return array
      */
     protected function mapThroughColumns(): array
     {
@@ -22,8 +20,6 @@ trait InteractsWithColumns
 
     /**
      * Maps requiredColumns property into columnsToMap required state.
-     *
-     * @return array
      */
     protected function mapThroughRequiredColumns(): array
     {
@@ -39,8 +35,6 @@ trait InteractsWithColumns
 
     /**
      * Maps columnLabels property into columnsToMap label state.
-     *
-     * @return array
      */
     protected function mapThroughColumnLabels(): array
     {
